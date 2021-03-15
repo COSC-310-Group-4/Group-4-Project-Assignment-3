@@ -1,6 +1,8 @@
 # **Movie Chat Bot**
 COSC 310 Assignment - Group 4
 
+*This repository is an update version of the original with the history and files preserved for refactoring*
+
 ## Table of Contents
 * [General Information](#general-information)
 * [Language and Modules](#language-and-modules)
