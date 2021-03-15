@@ -1,5 +1,6 @@
 # **Movie Chat Bot**
-COSC 310 Assignment - Group 4
+
+COSC 310 Assignment **3** - Group 4
 
 *This repository is a copied and updated version of the original with the change history and files preserved for refactoring*
 
