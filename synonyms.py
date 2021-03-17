@@ -1,30 +1,6 @@
 import nltk
 from nltk.corpus import wordnet
 
-# holds all arrays
-keywords = []
-
-# arrays for the keywords used to find which function should be called 
-# the number beside each array indicate it's index in keywords
-movieSyn = [] #0
-directorSyn = [] #1
-summarySyn = [] #2
-charactersSyn = [] #3
-playedSyn = [] #4
-longSyn = [] #5
-changeSyn = [] #6
-nameSyn = [] #7
-nevermindSyn = [] #8
-workedSyn = [] #9
-otherSyn = [] #10
-birthdaySyn = [] #11
-placeSyn = [] #12
-latestSyn = [] #13
-biographySyn = [] #14
-companySyn = [] #15
-producedSyn = [] #16
-goodbyeSyn = [] #17
-
 # Gets the synonyms for the specified word and returns the set.
 # Also cleans the elements in the array (i.e., "-" or "_")
 # is called by the initSyns() function
@@ -45,71 +21,72 @@ def getSyn(word):
             synonyms.append(new)
             synonyms.remove(i)
 
-    return set(synonyms)
+    return synonyms
 
-# initializes all the arrays with their synonyms and appends them to the keywords array
-# called by the synonyms() function
-def initSyns():
-    movieSyn = getSyn("movie")
-    keywords.append(movieSyn)
-
-    directorSyn = getSyn("director")
-    keywords.append(directorSyn)
-
-    summarySyn = getSyn("summary")
-    keywords.append(summarySyn)
-
-    charactersSyn = getSyn("characters")
-    keywords.append(charactersSyn)
-
-    playedSyn = getSyn("played")
-    keywords.append(playedSyn)
-
-    longSyn = getSyn("long")
-    keywords.append(longSyn)
-
-    changeSyn = getSyn("change")
-    keywords.append(changeSyn)
-
-    nameSyn = getSyn("name")
-    keywords.append(nameSyn)
-
-    nevermindSyn = getSyn("disregard")
-    keywords.append(nevermindSyn)
-
-    workedSyn = getSyn("worked")
-    keywords.append(workedSyn)
-
-    otherSyn = getSyn("other")
-    keywords.append(otherSyn)
-
-    birthdaySyn = getSyn("birthday")
-    keywords.append(birthdaySyn)
-
-    placeSyn = getSyn("place")
-    keywords.append(placeSyn)
-
-    latestSyn = getSyn("latest")
-    keywords.append(latestSyn)
-
-    biographySyn = getSyn("biography")
-    keywords.append(biographySyn)
-
-    companySyn = getSyn("company")
-    keywords.append(companySyn)
-
-    producedSyn = getSyn("produced")
-    keywords.append(producedSyn)
-
-    goodbyeSyn = getSyn("goodbye")
-    keywords.append(goodbyeSyn)
+# initializes all the arrays with their synonyms 
+movieSyn = getSyn("movie")
+directorSyn = getSyn("director")
+summarySyn = getSyn("summary")
+charactersSyn = getSyn("characters")
+playedSyn = getSyn("played")
+longSyn = getSyn("long")
+changeSyn = getSyn("change")
+nameSyn = getSyn("name")
+nevermindSyn = getSyn("disregard")
+workedSyn = getSyn("worked")
+otherSyn = getSyn("other")
+birthdaySyn = getSyn("birthday")
+placeSyn = getSyn("place")
+latestSyn = getSyn("latest")
+biographySyn = getSyn("biography")
+companySyn = getSyn("company")
+producedSyn = getSyn("produced")
+goodbyeSyn = getSyn("goodbye")
     
-# Will get the input from IMDBot and use the synonyms to find which function should be called
-# if the input contains a synonym for 2 different keywords, throw an error
-def synonyms ():
-   pass
+# takes in the user input and an array (one of the ones initialized previousny)
+# compares them and returns 0 or 1 which will indicate which function should be called
+def getLocation(input, arr):
+    for i in arr:
+        if input.__contains__(i):
+            return 0
+    return 1
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # the code below is used for testing purposes while implementing
+# this would be implemented in IMDBot (replacing what is currently there)
+input = "lets talk about a film"
+userName = "Monica"
 
-initSyns()
+if (getLocation(input, movieSyn) == 0):
+    #call findMovie(userName)
+    pass
+elif (getLocation(input, directorSyn) == 0):
+    #check if movie is in locals,
+    #call findDirector(movie) if movie is in locals
+    #else print error message
+    pass
+elif (getLocation(input, summarySyn) == 0):
+    #check if movie is in locals,
+    #call giveSummary(movie) if movie is in locals
+    #else print error message
+    pass
+elif (getLocation(input, charactersSyn) == 0):
+    #check if movie is in locals,
+    #call showCharacters(movie) if movie is in locals
+    #else print error message
+    pass
+elif (getLocation(input, playedSyn) == 0):
+    #check if movie is in locals,
+    #splits string where necessary to get character name
+    #call whoPlayed(movie, character) if movie is in locals
+    #else print error message
+    pass
+#continues exactly like this until all the synonym arrays have been checked
+else:
+    #print error message
+    pass
+
+# limitation:
+#   - synonyms are limited by the synonyms in wordnet
+#   - slang cannot be used
+#   - can't handle an input having the same synonym for multiple keywords
