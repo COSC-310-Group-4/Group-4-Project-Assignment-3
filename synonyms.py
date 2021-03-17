@@ -3,7 +3,6 @@ from nltk.corpus import wordnet
 
 # Gets the synonyms for the specified word and returns the set.
 # Also cleans the elements in the array (i.e., "-" or "_")
-# is called by the initSyns() function
 def getSyn(word):
     synonyms = []
 
@@ -20,7 +19,6 @@ def getSyn(word):
             new = i.replace("-", " ")
             synonyms.append(new)
             synonyms.remove(i)
-
     return synonyms
 
 # initializes all the arrays with their synonyms 
@@ -90,3 +88,4 @@ else:
 #   - synonyms are limited by the synonyms in wordnet
 #   - slang cannot be used
 #   - can't handle an input having the same synonym for multiple keywords
+
