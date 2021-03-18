@@ -6,12 +6,12 @@ def exitProgram():
 
 # ButtonClick listener
 def buttonClick():
-    text = inputBox.get("1.0", "end-1c") # Take the inputBox text from 1st word, 0th character, to the end without the new line
-    print(text)
+    userInput = inputBox.get("1.0", "end-1c") # Take the inputBox text from 1st word, 0th character, to the end without the new line
+    print(userInput)
     
     # Write to the outputBox, don't forget to disabled it after
     outputBox["state"] = "normal"
-    outputBox.insert("end-1c", text + "\n") # insert to the very last and create \n. so that next message will pop at the very end and automatically adds a new line
+    outputBox.insert("end-1c", userInput + "\n") # insert to the very last and create \n. so that next message will pop at the very end and automatically adds a new line
     outputBox["state"] = "disabled" 
 
     # Clear the input box
@@ -21,6 +21,7 @@ def buttonClick():
 root = Tk()
 root.title("IMDBot")
 root.geometry("500x500")
+root.minsize(300, 250) # minimum size so that the button and text boxes don't disappear or look odd
 
 # Menu Bar
 mainMenu = Menu(root)
