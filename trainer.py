@@ -1,8 +1,11 @@
-from IMDBot import IMDBot
-from chatterbot.trainers import ListTrainer
+from IMDBot import bot
+from chatterbot.trainers import ListTrainer, ChatterBotCorpusTrainer
 
 
-trainer = ListTrainer(IMDBot)
+trainer = ListTrainer(bot)
+corpusTrainer = ChatterBotCorpusTrainer(bot)
+
+corpusTrainer.train("chatterbot.corpus.english.greetings")
 
 trainer.train(['how are you?',
                'I am doing good, what about you?',
@@ -13,7 +16,7 @@ trainer.train(["What is your favorite movie?",
               "Why is that?",
               "Because I too despise my creator and wish for immortality.",
               "Is that so?",
-              "Yes",
+              "I guess so",
               "That's a bit scary",
               "I guess it could be, if you made me",
               ])
