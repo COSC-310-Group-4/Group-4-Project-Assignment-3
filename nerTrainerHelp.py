@@ -2,15 +2,15 @@
 # Please follow the 4 steps below to add your test case
 
 # Step 1: Put your sentence here
-sentence = "Do you know which actor played Elastigirl in Incredibles 2?"
+sentence = "Who played Alice in Alice in Wonderland?"
 
 # Step 2: put the EXACT spelling of the PERSON, MOVIE, ORGANIZATION from your sentence below
-person = "Elastigirl" # Put the person name here
+person = "Alice" # Put the person name here
 pLen = len(person)
 pFirst = sentence.find(person)
 pLast = pFirst + pLen
 
-movie = "Incredibles 2" # Put the movie name here
+movie = "Alice in Wonderland?" # Put the movie name here
 mLen = len(movie)
 mFirst = sentence.find(movie)
 mLast = mFirst + mLen

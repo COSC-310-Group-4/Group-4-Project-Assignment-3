@@ -48,7 +48,7 @@ def listEntities(text):
     doc = nlp(text) # Process the text
     entities = []
     for ent in doc.ents: # Iterate over the entities
-        entity = (ent.label_, ent.text)
+        entity = (ent.label_, ent.text, ent.start, ent.end)
         entities.append(entity)
     return entities
 

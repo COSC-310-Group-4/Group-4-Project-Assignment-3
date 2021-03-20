@@ -25,6 +25,7 @@ def trainSpacy(): # This is called in ner.py DO NOT call it elsewhere.
                 ("Who played Wanda in WandaVision?", {"entities": [(11, 16, "PERSON"), (20, 31, "WORK_OF_ART")]}),
                 ("Who played Vision in The Avengers?", {"entities": [(11, 17, "PERSON"), (21, 33, "WORK_OF_ART")]}),
                 ("Which actor played Jarvis in Iron Man 2?", {"entities": [(19, 25, "PERSON"), (29, 39, "WORK_OF_ART")]}),
+                ("Who played Alice in Alice in Wonderland?", {"entities": [(11, 16, "PERSON"), (20, 40, "WORK_OF_ART")]}),
                 ("Who played Pepper Potts in Iron Man?", {"entities": [(11, 23, "PERSON"), (27, 35, "WORK_OF_ART")]}),
                 ("Who played Happy Hogan in Spider-Man: Homecoming?", {"entities": [(11, 22, "PERSON"), (26, 48, "WORK_OF_ART")]}),
                 ("Which actor played Spider-Man in Spider-Man: Far from Home?", {"entities": [(19, 29, "PERSON"), (33, 58, "WORK_OF_ART")]}),
