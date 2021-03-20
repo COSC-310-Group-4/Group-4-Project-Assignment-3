@@ -1,3 +1,6 @@
+# Installations:
+# pip install ntlk (if not already installed)
+
 import nltk
 from nltk.corpus import wordnet
 
