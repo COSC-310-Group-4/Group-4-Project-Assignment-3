@@ -25,22 +25,29 @@ def fixWord(word):
             return spell.correction(word)
 
 # Fix a complete sentence
-def fixSentence(sentence):
+# sentence = sentence to be fixed
+# entityArray = array of entities extracted from named-entity recognition
+def fixSentence(sentence, entityArray):
     words = sentence.split() # Convert the sentence into array of words
     newsentence = ""
 
     for word in words:
-        wrongword = spell.unknown([word])
-        if wrongword != None:
-            word = fixWord(word)
         
-        newsentence += word + " " 
+        if word in entityArray:
+            newsentence += word + " "
+        else:
+            wrongword = spell.unknown([word]) # assign the mispelled word to wrongword variable
+
+            if wrongword != None: # if wrong word exists, fix the word
+                word = fixWord(word)
+            
+            newsentence += word + " " 
             
     return newsentence
 
 # Offer correction by IMDBot instead
-def offerCorrection(sentence):
-    newsentence = fixSentence(sentence)
+def offerCorrection(sentence,entityArray):
+    newsentence = fixSentence(sentence, entityArray)
     print("IMDBot: Do you mean " + newsentence + "?")
 
 
@@ -48,8 +55,6 @@ def offerCorrection(sentence):
 
 print(fixWord("egt"))
 print(fixWord("wnat"))
-sen = "egt me an egg please"
-sen2 = "i wnat to f1nd a movii called froxen"
-print(fixSentence(sen))
-offerCorrection(sen)
-print(fixSentence(sen2))
+
+entityArray = ["Zendaya","Spider-man"]
+print(fixSentence("Whof plaked Zendaya inm Spider-man",entityArray))
