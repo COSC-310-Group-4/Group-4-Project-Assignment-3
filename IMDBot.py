@@ -115,7 +115,7 @@ while True:
                 print('IMDBot: No, this company did not work on ' + otherMovie['title'])
             print("IMDBOT: What else would you like to know?")
         else:
-            print("IMDBOT: ", bot.get_response(user_input))
+            print("IMDBOT:", bot.get_response(user_input))
 
     except(KeyboardInterrupt, EOFError, SystemExit): #end conversation in case of fatal error or user inputs ctrl+c
         break
