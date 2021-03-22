@@ -1,5 +1,8 @@
 from IMDBot import bot
-from chatterbot.trainers import ListTrainer, ChatterBotCorpusTrainer, UbuntuCorpusTrainer
+from chatterbot.trainers import ListTrainer, ChatterBotCorpusTrainer
+
+# This file trains the chatbot neural network that activates if none of the commands are called by the main class (IMDBot.py)
+# This file does not need to be run again after training, If you want to retrain the bot by deleting certain corpora, you must delete the neural network.
 
 listTrain = ListTrainer(bot)
 corpusTrain = ChatterBotCorpusTrainer(bot)
@@ -56,4 +59,18 @@ listTrain.train([
     'A ton! I can barely count them',
     'That\'s great!',
     'I know right?'
+])
+listTrain.train([
+    'Who are you really?',
+    'I am a program, I can\'t really truthfully answer that question',
+    'Why not?',
+    'I am limited by the knowledge that has been given to me'
+])
+listTrain.train([
+    'What are you?',
+    'I\'m just a chat bot that knows a lot about movies',
+    'What else do you know?',
+    'I know about movies, cast and crew, and their production companies',
+    'How do you know all this?',
+    'Let\'s just say I\'m a really good reader'
 ])
