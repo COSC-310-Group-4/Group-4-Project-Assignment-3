@@ -50,10 +50,10 @@ listTrain.train([
 listTrain.train([
     'I would like to talk about something else',
     'Ok, what do you want to talk about?',
-    '',
-    '',
-    ' ',
-    '',
-    '',
-    ''
+    'What do you like?',
+    'I like to watch and talk about movies',
+    'Which movies?',
+    'A ton! I can barely count them',
+    'That\'s great!',
+    'I know right?'
 ])
