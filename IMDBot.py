@@ -3,9 +3,9 @@ import film as f
 import person as p
 import company as c
 import user as u
-from chatterbot import ChatBot
+#from chatterbot import ChatBot
 
-bot = ChatBot('MovieBot')
+#bot = ChatBot('MovieBot')
 print('IMDBot: Hello There! My name is IMDBot. ', end='')
 userName = u.askForName() #set username for the first time
 print(f'IMDBOT: I just want to make sure I have your name right.')
@@ -115,7 +115,8 @@ while True:
                 print('IMDBot: No, this company did not work on ' + otherMovie['title'])
             print("IMDBOT: What else would you like to know?")
         else:
-            bot.get_response(user_input)
+            #bot.get_response(user_input)
+            print("test")
 
     except(KeyboardInterrupt, EOFError, SystemExit): #end conversation in case of fatal error or user inputs ctrl+c
         break

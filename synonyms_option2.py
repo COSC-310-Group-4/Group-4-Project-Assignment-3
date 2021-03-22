@@ -1,10 +1,17 @@
 import nltk
 from nltk.corpus import wordnet
 
-# takes the sentance the user inputs and returns an array
-def getArray(input):
+# takes the sentance the user inputs as well as a list of entities from NER 
+# and returns an array of all words in the user input that does not include words in
+# the list of entities. 
+def getArray(input, entities):
     if (" " in input):
-        return input.split(" ")
+        arr = input.split(" ")
+        for i in entities:
+            for j in arr:
+                if i == j:
+                    arr.remove(j)
+        return arr
     else:
         return input
 
@@ -54,10 +61,11 @@ def findSyns(arr, w):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Used for testing purposes:
-input = "has we worked on this movie?"
+input = "Zendaya and Tom in movie"
+entities = ['Zendaya', "Tom"]
 
-a = getArray(input)
-#print(a)
+a = getArray(input, entities)
+print(a)
 
 res = findSyns(a, "movie")
 #print(res)
@@ -65,7 +73,7 @@ res = findSyns(a, "movie")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # the below code is how synonyms would be implemented into IMDBot:
 
-user_input = getArray(input.lower())
+user_input = getArray(input.lower(), entities)
 
 if (findSyns(user_input, "movie") == 0):
     # call findMove(user_Name)
