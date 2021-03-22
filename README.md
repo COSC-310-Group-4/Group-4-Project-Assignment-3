@@ -20,12 +20,17 @@ For this project, we created a responsive and interactive chatbot using Python w
 
 - Python 3.6
 - IMDbPY Library
+- nltk 3.4.4
+- spaCy 3.0.5 **with** Pipelines en_core_web_sm 3.0.0
+
 
 ## Setup
 
-1. Ensure you have the IMDbPY library installed, you can do this through pip by running
+1. In order to use this code to its full extent, ensure you have the required libraries installed, you can do this through pip by running
 
 > $ pip install IMDBPy
+> $ pip install spacy
+> $ pip install nltk
 
 2. In order to run the bot, use the following command from within the project main directory.
 
