@@ -48,6 +48,7 @@ def getSyn(word):
 
 # if the keyword specified to call each function is a synonym for the input the user
 # entered, the function returns 0 (it has been found) else, it return 1 (not found)
+# arr = the user input broken up into an array; w = keyword being looked for
 def findSyns(arr, w):
     s = []
     found = 1

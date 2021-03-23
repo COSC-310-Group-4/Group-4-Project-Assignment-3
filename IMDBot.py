@@ -28,7 +28,7 @@ while True:
         for word in user_input: # Turn all words into lowercase for easier search for keywords.
             word.lower()
         
-        if ('bye' in user_input or sy.findSyns(user_input, 'goodbye') == 0): #end conversation if user says bye
+        if (sy.findSyns(user_input, 'goodbye') == 0): #end conversation if user says bye
             break
         #TODO: figure this one out
         elif ((sy.findSyns(user_input, 'find') == 0 or sy.findSyns(user_input, 'search') == 0) and ('another' in user_input or sy.findSyns(user_input, 'movie') == 0)): # pick the movie to talk about
@@ -58,7 +58,7 @@ while True:
                 movie = f.runtime(movie)
             else:
                 print('IMDBot: Sorry, I need to know which movie you want me to check the runtime for. Please ask me to find a movie first.')
-        elif ('change' and ('name' or 'username') in user_input):
+        elif (sy.findSyns(user_input, 'change') == 0 and ('name' or 'username') in user_input):
             userName = u.checkName(userName)
             print('How can I help you?') #concatenates to "IMDBot: That's a cool name, userName! "
         elif ('nevermind' in user_input):
@@ -71,14 +71,14 @@ while True:
             else:
                 print("IMDBOT: Sorry, I could not find anything about that.")
         #TODO: find other key words for this
-        elif(('what' and 'other') in user_input):
+        elif('what' in user_input and sy.findSyns(user_input, 'other') == 0) :
             #takes in user input and calls otherRoles() from person.py
             if 'movie' in locals():
                 print("IMDBOT: Hmm... let me think...")
                 p.otherRoles(person)
             else:
                 print("IMDBOT: Sorry I am not sure how to help with that.")
-        elif(sy.findSyns(user_input, 'birthday') == 0):
+        elif(sy.findSyns(user_input, 'birthday') == 0 or sy.findSyns(user_input, 'born') == 0):
             #Call giveBio() from person.py
             #Search for birthday/birthdate
             #"What is the birthday of {any actor name} or birthday/birth date of {any actor name}"
@@ -94,7 +94,7 @@ while True:
             print("IMDBOT: Hmm... let me think...")
             p.giveBio(person, 2)
             print("IMDBOT: What else would you like to know?")
-        elif(('latest' and 'movie') in user_input):
+        elif(sy.findSyns(user_input, 'latest') == 0 and sy.findSyns(user_input, 'movie') == 0):
             #Search for a latest movie by an actor
             #Example, what is the latest movie {any actor name} has worked in
             person = user_input.split("movie ")[1]
@@ -102,13 +102,12 @@ while True:
             print("IMDBOT: Hmm... let me think...")
             p.giveBio(person, 3)
             print("IMDBOT: What else would you like to know?")
-        # TODO: figure out how to integrate this one
-        elif('check' and 'if' and 'in' in user_input):
+        elif(sy.findSyns(user_input, 'check') == 0 and ('if' and 'in') in user_input):
             #Check if a {any actor name} is in {any movie name}
             # Example, check if {any actor name} is in {any movie name}
             p.checker(person_name, movie_name)
             print("IMDBOT: What else would you like to know?")
-        elif('bio' in user_input):
+        elif('bio' in user_input or sy.findSyns(user_input, "biography") == 0):
             #Gets bio of an actor
             # bio {any actor name}
             p.giveBio(person_name, 4)
