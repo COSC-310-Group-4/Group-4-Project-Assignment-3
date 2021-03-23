@@ -121,7 +121,7 @@ listTrain.train([
 ])
 listTrain.train([
     'What do you look like?',
-    "\n    _____ \n  .'     '. \n /  O   O  \   \n|           | \n \  '---'  /  \n  '._____.'  \n\nJust kidding, I don't have a physical form.",
+    "This is me: （‐＾▽＾‐）   ..Just kidding, I don't have a physical form ヾ(´▽｀;)ゝ",
     'You have a nice smile',
     'Aww, thanks'
 ])
