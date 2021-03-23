@@ -33,6 +33,7 @@ def fixWord(word):
 def fixSentence(sentence, entityArray):
     words = sentence.split() # Convert the sentence into array of words
     newsentence = ""
+    mistakeFound = False # keep track if the user input contains spelling mistake
 
     for word in words:
         
@@ -43,10 +44,17 @@ def fixSentence(sentence, entityArray):
 
             if wrongword != None: # if wrong word exists, fix the word
                 word = fixWord(word)
+                mistakeFound = True
             
             newsentence += word + " " 
-            
+
+    if mistakeFound == True:
+        print("IMDBot: ----- Spelling error found, below is the fixed sentence -----")
+        print("IMDBot: " + newsentence)
+
     return newsentence
+            
+    
 
 # Offer correction by IMDBot instead
 def offerCorrection(sentence,entityArray):

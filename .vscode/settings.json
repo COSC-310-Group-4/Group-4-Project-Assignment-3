@@ -1,7 +1,3 @@
 {
-<<<<<<< HEAD
-    "python.pythonPath": "C:\\Users\\Francisco\\anaconda3\\envs\\ChatBot\\python.exe"
-=======
-    "python.pythonPath": "/opt/anaconda3/envs/310/bin/python"
->>>>>>> main
+    "python.pythonPath": "C:\\Users\\orvin\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
 }
