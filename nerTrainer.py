@@ -21,6 +21,11 @@ def trainSpacy(): # This is called in ner.py only. DO NOT call it elsewhere.
 
     # Training Data. Note: when adding data, the end index needs to be +1 than then length of the entity. Use nerTrainDataHelp.py for assistance
     TRAIN_DATA = [
+        ("My name is Veronica", {"entities": [(11, 19, "PERSON")]}),
+        ("My name is Orvin", {"entities": [(11, 16, "PERSON")]}),
+        ("My name is Hal", {"entities": [(11, 14, "PERSON")]}),
+        ("My name is Francisco", {"entities": [(11, 20, "PERSON")]}),
+        ("My name is Joel", {"entities": [(11, 15, "PERSON")]}),
         ("Who played Neo in The Matrix?", {"entities": [(11, 14, "PERSON"), (18, 28, "WORK_OF_ART")]}),
         ("Who played Wanda Maximoff in The Avengers?", {"entities": [(11, 25, "PERSON"), (29, 41, "WORK_OF_ART")]}),
         ("Who played Wanda in WandaVision?", {"entities": [(11, 16, "PERSON"), (20, 31, "WORK_OF_ART")]}),

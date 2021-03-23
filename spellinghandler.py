@@ -1,3 +1,6 @@
+# Installation Instructions:
+# pip install pyspellchecker
+
 from spellchecker import SpellChecker
 
 # Create a dictionary of some mispelled words as key, and correct word as value
@@ -11,7 +14,7 @@ def createDictionary(file):
         (key,val) = line.split()
         dictionary[key] = val
 
-createDictionary("words.txt")
+createDictionary("./words.txt") # TODO: This line is giving Veronica errors and not sure why
 
 # Instantiate a SpellChecker object
 spell = SpellChecker()
@@ -53,8 +56,8 @@ def offerCorrection(sentence,entityArray):
 
 # --------------Testing------------ #
 
-print(fixWord("egt"))
-print(fixWord("wnat"))
+# print(fixWord("egt"))
+# print(fixWord("wnat"))
 
-entityArray = ["Zendaya","Spider-man"]
-print(fixSentence("Whof plaked Zendaya inm Spider-man",entityArray))
+# entityArray = ["Zendaya","Spider-man"]
+# print(fixSentence("Whof plaked Zendaya inm Spider-man",entityArray))

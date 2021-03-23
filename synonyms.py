@@ -1,5 +1,9 @@
 # Installations:
 # pip install ntlk (if not already installed)
+# In Python:
+# >>> import nltk
+# >>> nltk.download()
+# Download window opens, under corpus, download wordnet
 
 import nltk
 from nltk.corpus import wordnet
@@ -64,43 +68,46 @@ def findSyns(arr, w):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Used for testing purposes:
-input = "Zendaya and Tom in movie"
-entities = ['Zendaya', "Tom"]
+# input = "What is the plot of The Matrix?"
+# entities = ['The Matrix']
 
-a = getArray(input, entities)
-print(a)
+# a = getArray(input, entities)
+# print(a)
 
-res = findSyns(a, "movie")
+# res = findSyns(a, "summary")
 #print(res)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # the below code is how synonyms would be implemented into IMDBot:
 
-user_input = getArray(input.lower(), entities)
+# user_input = getArray(input.lower(), entities)
 
-if (findSyns(user_input, "movie") == 0):
-    # call findMove(user_Name)
-    print("Ok, let's talk about a movie")
-elif(findSyns(user_input, "director") == 0):
-    # check if movie in locals(), 
-    # call findDirector(movie)
-    # if movie not in locals(), display error message
-    pass
-elif (findSyns(user_input, "summary") == 0):
-    # check if movie in locals(), 
-    # call giveSummary(movie)
-    # if movie not in locals(), display error message
-    pass
-elif (findSyns(user_input, "characters") == 0):
-    # check if movie in locals(), 
-    # call showCharacters(movie)
-    # if movie not in locals(), display error message
-    pass
-# ... etc ...
-else:
-    #display error msg
-    print("Sorry, i didn't quite get that")
-    pass
+# if (findSyns(user_input, "movie") == 0):
+#     # call findMove(user_Name)
+#     print("Ok, let's talk about a movie")
+# elif(findSyns(user_input, "director") == 0):
+#     # check if movie in locals(), 
+#     # call findDirector(movie)
+#     # if movie not in locals(), display error message
+#     print("director")
+#     pass
+# elif (findSyns(user_input, "summary") == 0):
+#     # check if movie in locals(), 
+#     # call giveSummary(movie)
+#     # if movie not in locals(), display error message
+#     print("summary")
+#     pass
+# elif (findSyns(user_input, "characters") == 0):
+#     # check if movie in locals(), 
+#     # call showCharacters(movie)
+#     # if movie not in locals(), display error message
+#     print("characters")
+#     pass
+# # ... etc ...
+# else:
+#     #display error msg
+#     print("Sorry, i didn't quite get that")
+#     pass
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Limitations:
