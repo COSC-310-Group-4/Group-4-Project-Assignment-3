@@ -34,7 +34,14 @@ For this project, we created a responsive and interactive chatbot using Python w
 > $ python -m spacy download en_core_web_sm
 > $ pip install nltk
 
-2. In order to run the bot, use the following command from within the project main directory.
+2. Make sure the code will be running on the file directory. To make sure you have it running on the directory, do the following:
+
+> go to settings or (shortcut: ctrl+, )
+> type "execute in file dir"
+> The first setting right underneath the searchbox should contain a checkbox that says "When executing a file in terminal, whether to use execute the file's directory, instead of the current open folder". 
+> Check the box 
+
+3. In order to run the bot, use the following command from within the project main directory.
 
 > $ python IMDBot.py
 
