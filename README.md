@@ -34,6 +34,13 @@ For this project, we created a responsive and interactive chatbot using Python w
 > $ python -m spacy download en_core_web_sm
 > $ pip install nltk
 
+We need to also download the corpus necessary for our NLP and program to run. To do this:
+> Make sure to "$ pip install nltk" beforehand
+> Open python shell
+> ">>> import nltk"
+> ">>> nltk.download()"
+> A new window will open. Under the menu "CORPORA", scroll to find "wordnet", and finally press "download"
+
 2. Make sure the code will be running on the file directory. To make sure you have it running on the directory, do the following:
 
 > go to settings or (shortcut: ctrl+, )
