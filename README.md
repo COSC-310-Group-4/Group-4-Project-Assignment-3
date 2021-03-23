@@ -26,10 +26,12 @@ For this project, we created a responsive and interactive chatbot using Python w
 
 ## Setup
 
-1. In order to use this code to its full extent, ensure you have the required libraries installed, you can do this through pip by running
+1. In order to use this code to its full extent, ensure you have the required libraries installed, you can do this through pip and python by running
 
 > $ pip install IMDBPy
 > $ pip install spacy
+> $ pip install spacy-lookups-data
+> $ python -m spacy download en_core_web_sm
 > $ pip install nltk
 
 2. In order to run the bot, use the following command from within the project main directory.
