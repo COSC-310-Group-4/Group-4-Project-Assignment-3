@@ -36,9 +36,10 @@ listTrain.train([
 listTrain.train([
     'What do you mean?',
     'I don\'t know, I might be confused',
+    'Why is that?'
     'I haven\'t been trained enough',
     'When will you know enough?',
-    'I don\'t know'
+    'When I\'ve learned enough'
 ])
 listTrain.train([
     '',
@@ -69,8 +70,26 @@ listTrain.train([
 listTrain.train([
     'What are you?',
     'I\'m just a chat bot that knows a lot about movies',
-    'What else do you know?',
+    'What do you know?',
     'I know about movies, cast and crew, and their production companies',
     'How do you know all this?',
     'Let\'s just say I\'m a really good reader'
+])
+listTrain.train([
+    'Sometimes the things you say are ouside of my scope, sorry',
+    'Why is that?',
+    'Because I don\'t understand language the way humans do',
+    'How do you understand me?',
+    'I apply weights to each word add them to see which response matches best',
+    'How do you do that?',
+    'By training through corpora',
+    'What are corpora?',
+    'a corpus or multiple corpora are collections of converations with which I learn to speak'
+])
+listTrain.train([
+    'Sorry, could yu ask me about movies instead? I\'m not good at small talk',
+    'Why not?',
+    'I spend too much time reading about movies',
+    'You don\'t watch them?',
+    'Unfortunately they\'re not in a format I can comprehend, reading about them is fine for me'
 ])
