@@ -61,7 +61,7 @@ def findSyns(arr, w):
         for i in range(len(arr)):
             word = arr[i]
             s = getSyn(word)
-            if (s.__contains__(w)):
+            if (w.__contains__(s)):
                 found = 0
                 break
     
@@ -69,7 +69,7 @@ def findSyns(arr, w):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Used for testing purposes:
-# input = "What is the plot of The Matrix?"
+# input = "Tell me the characters"
 # entities = ['The Matrix']
 
 # a = getArray(input, entities)
@@ -80,12 +80,12 @@ def findSyns(arr, w):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # the below code is how synonyms would be implemented into IMDBot:
-
+# entities = ["The Avengers"]
 # user_input = getArray(input.lower(), entities)
 
-# if (findSyns(user_input, "movie") == 0):
-#     # call findMove(user_Name)
-#     print("Ok, let's talk about a movie")
+# if (findSyns(user_input, "characters") == 0):
+     # call findMove(user_Name)
+    # print("Ok, let's talk about a movie")
 # elif(findSyns(user_input, "director") == 0):
 #     # check if movie in locals(), 
 #     # call findDirector(movie)
@@ -107,7 +107,7 @@ def findSyns(arr, w):
 # # ... etc ...
 # else:
 #     #display error msg
-#     print("Sorry, i didn't quite get that")
+    # print("Sorry, i didn't quite get that")
 #     pass
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
