@@ -61,7 +61,7 @@ def findSyns(arr, w):
         for i in range(len(arr)):
             word = arr[i]
             s = getSyn(word)
-            if (w.__contains__(s)):
+            if (w in s or s in w):
                 found = 0
                 break
     
@@ -69,7 +69,7 @@ def findSyns(arr, w):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Used for testing purposes:
-# input = "Tell me the characters"
+# input = "yes"
 # entities = ['The Matrix']
 
 # a = getArray(input, entities)
@@ -83,7 +83,7 @@ def findSyns(arr, w):
 # entities = ["The Avengers"]
 # user_input = getArray(input.lower(), entities)
 
-# if (findSyns(user_input, "characters") == 0):
+# if (findSyns(user_input, "y") == 0):
      # call findMove(user_Name)
     # print("Ok, let's talk about a movie")
 # elif(findSyns(user_input, "director") == 0):
