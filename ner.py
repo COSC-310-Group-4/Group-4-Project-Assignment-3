@@ -21,39 +21,39 @@ nlp = nerTrainer.trainSpacy()
 ner = nlp.get_pipe("ner")
 
 # Method takes user input, finds all PERSON names, and returns them as an array of strings
-def getPersonNames(text):
+def getPersonName(text):
     doc = nlp(text) # Process text
-    people = [] # Create blank array
+    person = []
     for ent in doc.ents: # Iterate through entities
         if(ent.label_ == "PERSON"): # Find person entities
-            people.append(ent.text) # Add them to the array
-    return people
+            person.append(ent.text)
+    return " ".join(person)
 
 # Method takes user input, finds all WORK OF ART (movie) names, and returns them as an array of strings
-def getMovieNames(text):
+def getMovieName(text):
     doc = nlp(text)
-    worksOfArt = []
+    workOfArt = []
     for ent in doc.ents:
         if(ent.label_ == "WORK_OF_ART"):
-            worksOfArt.append(ent.text)
-    return worksOfArt 
+            workOfArt.append(ent.text)
+    return " ".join(workOfArt)
 
 # Method takes user input, finds all ORG (companies), and returns them as an array of strings.
-def getOrgNames(text):
+def getOrgName(text):
     doc = nlp(text)
-    orgs = []
+    org = []
     for ent in doc.ents:
         if(ent.label_ == "ORG"):
-            orgs.append(ent.text)
-    return orgs
+            org.append(ent.text)
+    return " ".join(org)
 
 # Method takes user input, finds all entities, and returns entities as an array of strings. Used for spelling mistakes and synonym recognition.
 def listEntities(text):
-    doc = nlp(text)
-    entities = []
-    for ent in doc.ents:
-        entities.append(ent.text)
-    return entities
+    doc = nlp(text) # Process text
+    entities = [] # Create blank array
+    for ent in doc.ents: # Iterate through entities
+        entities.append(ent.text) # Add all entities to the array
+    return entities # return an array of entity strings
 
 # TODO: DELETE LATER. FOR TESTING ONLY.
 # t1 = time.time()
@@ -66,11 +66,11 @@ def listEntities(text):
 #     else:
 #         print("Entities: ", end="")
 #         print(listEntities(text))
-#         # print("People: ")
-#         # print(getPersonNames(text))
-#         # print("Works: ")
-#         # print(getMovieNames(text))
-#         # print("Organizations:")
-#         # print(getOrgNames(text))
+#         print("People: ")
+#         print(getPersonName(text))
+#         print("Works: ")
+#         print(getMovieName(text))
+#         print("Organizations:")
+#         print(getOrgName(text))
 
 # print("Exit")
