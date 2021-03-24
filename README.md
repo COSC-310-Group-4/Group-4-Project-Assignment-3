@@ -26,13 +26,29 @@ For this project, we created a responsive and interactive chatbot using Python w
 
 ## Setup
 
-1. In order to use this code to its full extent, ensure you have the required libraries installed, you can do this through pip by running
+1. In order to use this code to its full extent, ensure you have the required libraries installed, you can do this through pip and python by running
 
 > $ pip install IMDBPy
 > $ pip install spacy
+> $ pip install spacy-lookups-data
+> $ python -m spacy download en_core_web_sm
 > $ pip install nltk
 
-2. In order to run the bot, use the following command from within the project main directory.
+We need to also download the corpus necessary for our NLP and program to run. To do this:
+> Make sure to "$ pip install nltk" beforehand
+> Open python shell
+> ">>> import nltk"
+> ">>> nltk.download()"
+> A new window will open. Under the menu "CORPORA", scroll to find "wordnet", and finally press "download"
+
+2. Make sure the code will be running on the file directory. To make sure you have it running on the directory, do the following:
+
+> go to settings or (shortcut: ctrl+, )
+> type "execute in file dir"
+> The first setting right underneath the searchbox should contain a checkbox that says "When executing a file in terminal, whether to use execute the file's directory, instead of the current open folder". 
+> Check the box 
+
+3. In order to run the bot, use the following command from within the project main directory.
 
 > $ python IMDBot.py
 

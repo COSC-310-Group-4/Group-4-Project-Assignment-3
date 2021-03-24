@@ -37,8 +37,8 @@ def findMovie(userName): # Finds the movie requested by the user
     
 def findDirector(movie):
     dirList = ''
-    if (len(movie['directors']) == 1): 
-        print('The director of ' + movie['title'] + ' is ' + movie['directors']['name']) # outputs this if the movie has only one director
+    if (len(movie['directors']) == 1):
+        print('The director of ' + movie['title'] + ' is ' + movie['directors'][0]['name']) # outputs this if the movie has only one director
     else:
         c = 1
         for director in movie['directors']: #loops in order to ensure multiple directors are listed properly (Try asking for "The Matrix" directors)
@@ -47,7 +47,7 @@ def findDirector(movie):
             else: 
                 dirList += 'and ' + director['name']
             c += 1
-    print('IMDBot: The directors of ' + movie['title'] + ' are ' + dirList)
+        print('IMDBot: The directors of ' + movie['title'] + ' are ' + dirList)
     print('IMDBot: What would you like to know about the main director of ' + movie['title'] + '?')
     return movie['directors'][0] # returns a person object in case of follow up questions (can only return one director properly or other functions might not work)
 
