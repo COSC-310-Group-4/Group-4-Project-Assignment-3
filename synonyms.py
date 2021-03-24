@@ -1,5 +1,9 @@
 # Installations:
 # pip install ntlk (if not already installed)
+# In Python:
+# >>> import nltk
+# >>> nltk.download()
+# Download window opens, under corpus, download wordnet
 
 import nltk
 from nltk.corpus import wordnet
@@ -44,6 +48,7 @@ def getSyn(word):
 
 # if the keyword specified to call each function is a synonym for the input the user
 # entered, the function returns 0 (it has been found) else, it return 1 (not found)
+# arr = the user input broken up into an array; w = keyword being looked for
 def findSyns(arr, w):
     s = []
     found = 1
@@ -56,7 +61,7 @@ def findSyns(arr, w):
         for i in range(len(arr)):
             word = arr[i]
             s = getSyn(word)
-            if (s.__contains__(w)):
+            if (w.__contains__(s)):
                 found = 0
                 break
     
@@ -64,43 +69,46 @@ def findSyns(arr, w):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Used for testing purposes:
-input = "Zendaya and Tom in movie"
-entities = ['Zendaya', "Tom"]
+# input = "Tell me the characters"
+# entities = ['The Matrix']
 
-a = getArray(input, entities)
-print(a)
+# a = getArray(input, entities)
+# print(a)
 
-res = findSyns(a, "movie")
+# res = findSyns(a, "summary")
 #print(res)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # the below code is how synonyms would be implemented into IMDBot:
+# entities = ["The Avengers"]
+# user_input = getArray(input.lower(), entities)
 
-user_input = getArray(input.lower(), entities)
-
-if (findSyns(user_input, "movie") == 0):
-    # call findMove(user_Name)
-    print("Ok, let's talk about a movie")
-elif(findSyns(user_input, "director") == 0):
-    # check if movie in locals(), 
-    # call findDirector(movie)
-    # if movie not in locals(), display error message
-    pass
-elif (findSyns(user_input, "summary") == 0):
-    # check if movie in locals(), 
-    # call giveSummary(movie)
-    # if movie not in locals(), display error message
-    pass
-elif (findSyns(user_input, "characters") == 0):
-    # check if movie in locals(), 
-    # call showCharacters(movie)
-    # if movie not in locals(), display error message
-    pass
-# ... etc ...
-else:
-    #display error msg
-    print("Sorry, i didn't quite get that")
-    pass
+# if (findSyns(user_input, "characters") == 0):
+     # call findMove(user_Name)
+    # print("Ok, let's talk about a movie")
+# elif(findSyns(user_input, "director") == 0):
+#     # check if movie in locals(), 
+#     # call findDirector(movie)
+#     # if movie not in locals(), display error message
+#     print("director")
+#     pass
+# elif (findSyns(user_input, "summary") == 0):
+#     # check if movie in locals(), 
+#     # call giveSummary(movie)
+#     # if movie not in locals(), display error message
+#     print("summary")
+#     pass
+# elif (findSyns(user_input, "characters") == 0):
+#     # check if movie in locals(), 
+#     # call showCharacters(movie)
+#     # if movie not in locals(), display error message
+#     print("characters")
+#     pass
+# # ... etc ...
+# else:
+#     #display error msg
+    # print("Sorry, i didn't quite get that")
+#     pass
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Limitations:

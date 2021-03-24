@@ -2,15 +2,15 @@
 # Please follow the 4 steps below to add your test case
 
 # Step 1: Put your sentence here
-sentence = "Who played Alice in Alice in Wonderland?"
+sentence = "My name is Joel"
 
 # Step 2: put the EXACT spelling of the PERSON, MOVIE, ORGANIZATION from your sentence below
-person = "Alice" # Put the person name here
+person = "Joel" # Put the person name here
 pLen = len(person)
 pFirst = sentence.find(person)
 pLast = pFirst + pLen
 
-movie = "Alice in Wonderland?" # Put the movie name here
+movie = "" # Put the movie name here
 mLen = len(movie)
 mFirst = sentence.find(movie)
 mLast = mFirst + mLen
