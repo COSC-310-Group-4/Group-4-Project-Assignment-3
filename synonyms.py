@@ -61,7 +61,7 @@ def findSyns(arr, w):
         for i in range(len(arr)):
             word = arr[i]
             s = getSyn(word)
-            if (w.__contains__(s)):
+            if (s.__contains__(w)): # changed back to s.__contains__(w) because w.__contains__(s) returned an error
                 found = 0
                 break
     

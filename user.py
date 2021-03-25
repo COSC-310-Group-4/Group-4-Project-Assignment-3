@@ -19,11 +19,13 @@ def checkName(name): #can be used if the user wants to change their username
     nameCorrect = False
     while nameCorrect == False: #using nameCorrect as a flag
         print(f'IMDBot: Is your name {name}?')
-        nameCheck = input(f'You: ')[:1] #check the first letter of their answer. Only need a y or n
-        if (nameCheck.lower() == 'y' or sy.findSyns(nameCheck, 'yes') == 0):
+        nameCheck = input(f'You: ') # Receive input from user
+        nameCheckFirst = nameCheck[:1].lower() # Save first letter (might only need y or n)
+        nameCheckArr = sy.getArray(nameCheck, []) # Turn user input into array for synonym checking
+        if (nameCheckFirst == 'y' or sy.findSyns(nameCheckArr, 'yes') == 0):
             print(f'IMDBot: That\'s a cool name, {name}! ', end="")
             nameCorrect = True
-        elif (nameCheck.lower() == 'n' or sy.findSyns(nameCheck, 'no') == 0):
+        elif (nameCheckFirst == 'n' or sy.findSyns(nameCheckArr, 'no') == 0):
             print('IMDBot: Sorry I got it wrong. ', end="")
             name = askForName()
         else:

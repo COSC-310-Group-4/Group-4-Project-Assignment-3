@@ -88,7 +88,22 @@ def trainSpacy(): # This is called in ner.py only. DO NOT call it elsewhere.
         ("Which production company made Star Wars: Episode I - The Phantom Menace?", {"entities": [(30, 71, "WORK_OF_ART")]}),
         ("Which production company made Ratatouille?", {"entities": [(30, 41, "WORK_OF_ART")]}),
         ("Who directed Shaun of the Dead?", {"entities": [(13, 30, "WORK_OF_ART")]}),
-        ("Who directed Terminator 2: Judgment Day?", {"entities": [(13, 39, "WORK_OF_ART")]})
+        ("Who directed Terminator 2: Judgment Day?", {"entities": [(13, 39, "WORK_OF_ART")]}),
+        ("What is the birthday of Christopher Lloyd", {"entities": [(24, 41, "PERSON")]}),
+        ("What is the birthday of Michael J. Fox", {"entities": [(24, 38, "PERSON")]}),
+        ("What is the birth place of Crispin Glover", {"entities": [(27, 41, "PERSON")]}),
+        ("What is the birth place of Harry Waters Jr.?", {"entities": [(27, 43, "PERSON")]}),
+        ("What is the latest movie Daniel Radcliffe was in?", {"entities": [(25, 41, "PERSON")]}),
+        ("What is the latest movie Rupert Grint was in?", {"entities": [(25, 37, "PERSON")]}),
+        ("What is the latest movie Emma Watson acted in?", {"entities": [(25, 36, "PERSON")]}),
+        ("What is the latest movie Tom Felton acted in?", {"entities": [(25, 35, "PERSON")]}),
+        ("Check if John Hurt was in Harry Potter and the Sorcerer's Stone", {"entities": [(9, 18, "PERSON"), (26, 63, "WORK_OF_ART")]}),
+        ("Check if Julie Walters was in Harry Potter and the Deathly Hallows: Part 1", {"entities": [(9, 22, "PERSON"), (30, 74, "WORK_OF_ART")]}),
+        ("Check if Bob Odenkirk was in Incredibles 2", {"entities": [(9, 21, "PERSON"), (29, 42, "WORK_OF_ART")]}),
+        ("Give me the bio of Leonardo DiCaprio", {"entities": [(19, 36, "PERSON")]}),
+        ("Give me the bio of Joseph Gordon-Levitt", {"entities": [(19, 39, "PERSON")]}),
+        ("What is the bio of Elliot Page?", {"entities": [(19, 30, "PERSON")]}),
+        ("What is the bio of Michael Caine?", {"entities": [(19, 32, "PERSON")]}),
     ]
 
     # Use the internal training API and run randomized training loop

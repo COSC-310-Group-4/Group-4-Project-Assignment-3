@@ -2,10 +2,10 @@
 # Please follow the 4 steps below to add your test case
 
 # Step 1: Put your sentence here
-sentence = "My name is Joel"
+sentence = "What is the bio of Michael Caine?"
 
 # Step 2: put the EXACT spelling of the PERSON, MOVIE, ORGANIZATION from your sentence below
-person = "Joel" # Put the person name here
+person = "Michael Caine" # Put the person name here
 pLen = len(person)
 pFirst = sentence.find(person)
 pLast = pFirst + pLen
