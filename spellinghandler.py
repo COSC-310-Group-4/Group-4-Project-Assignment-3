@@ -1,6 +1,7 @@
 # Installation Instructions:
 # pip install pyspellchecker
 
+import string
 from spellchecker import SpellChecker
 
 # Create a dictionary of some mispelled words as key, and correct word as value
@@ -31,10 +32,17 @@ def fixWord(word):
 # sentence = sentence to be fixed
 # entityArray = array of entities extracted from named-entity recognition
 def fixSentence(sentence, entityArray):
+
+    punctuation = None #
+    if sentence[-1] in string.punctuation: # remove punctuation at the very end of the string
+        punctuation = sentence[-1]
+        sentence = sentence[:-1]
+
     words = sentence.split() # Convert the sentence into array of words
     newsentence = ""
     mistakeFound = False # keep track if the user input contains spelling mistake
-
+    
+    
     for word in words:
         
         if word in entityArray:
@@ -45,16 +53,17 @@ def fixSentence(sentence, entityArray):
             if (len(wrongword)==1): # if wrong word exists, fix the word
                 word = fixWord(word)
                 mistakeFound = True
-            
+
             newsentence += word + " " 
+
+    if punctuation != None:
+        newsentence += punctuation
 
     if mistakeFound == True:
         print("IMDBot: ----- Spelling error found, below is the fixed sentence -----")
         print("IMDBot: " + newsentence)
 
     return newsentence
-            
-    
 
 # Offer correction by IMDBot instead
 def offerCorrection(sentence,entityArray):
@@ -68,4 +77,4 @@ def offerCorrection(sentence,entityArray):
 # print(fixWord("wnat"))
 
 # entityArray = ["Zendaya","Spider-man"]
-# print(fixSentence("Whof plaked Zendaya inm Spider-man",entityArray))
+# print(fixSentence("Whof plaked Zendaya inm Spider-man?",entityArray))
