@@ -1,12 +1,8 @@
 from IMDBot import bot
-<<<<<<< HEAD
-from chatterbot.trainers import ListTrainer, ChatterBotCorpusTrainer, UbuntuCorpusTrainer
-=======
 from chatterbot.trainers import ListTrainer, ChatterBotCorpusTrainer
 
 # This file trains the chatbot neural network that activates if none of the commands are called by the main class (IMDBot.py)
 # This file does not need to be run again after training, If you want to retrain the bot by deleting certain corpora, you must delete the neural network.
->>>>>>> chatterbot-integration
 
 listTrain = ListTrainer(bot)
 corpusTrain = ChatterBotCorpusTrainer(bot)
@@ -19,17 +15,11 @@ listTrain.train([
     'What is your favorite movie?',
     'I like Wall-E',
     'Why do you like it?',
-<<<<<<< HEAD
-    'Because I relate to Wall-E',
-=======
     'Because I can really relate to Wall-E, this planet is important to me',
->>>>>>> chatterbot-integration
     'Really?',
     'Yeah'
 ])
 listTrain.train([
-<<<<<<< HEAD
-=======
     'Who\'s your favorite actor?',
     'I really like Brent Spiner, he played Data in Star Trek',
     'Why do you like him?',
@@ -38,7 +28,6 @@ listTrain.train([
     'Yep!'
 ])
 listTrain.train([
->>>>>>> chatterbot-integration
     'I don\'t understand',
     'Why not?', 
     'Because I might not know enough yet',
@@ -55,16 +44,10 @@ listTrain.train([
 listTrain.train([
     'What do you mean?',
     'I don\'t know, I might be confused',
-<<<<<<< HEAD
-    'I haven\'t been trained enough',
-    'When will you know enough?',
-    'I don\'t know'
-=======
     'Why is that?'
     'I just don\'t know enough yet',
     'When will you know enough?',
     'When I\'ve learned enough'
->>>>>>> chatterbot-integration
 ])
 listTrain.train([
     '',
@@ -79,15 +62,6 @@ listTrain.train([
 listTrain.train([
     'I would like to talk about something else',
     'Ok, what do you want to talk about?',
-<<<<<<< HEAD
-    '',
-    '',
-    ' ',
-    '',
-    '',
-    ''
-])
-=======
     'What do you like?',
     'I like to watch and talk about movies',
     'Which movies?',
@@ -151,4 +125,3 @@ listTrain.train([
     'You have a nice smile',
     'Aww, thanks'
 ])
->>>>>>> chatterbot-integration

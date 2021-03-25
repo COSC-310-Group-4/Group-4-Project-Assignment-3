@@ -6,9 +6,9 @@ import user as u
 import ner
 import spellinghandler as sp
 import synonyms as sy
-#from chatterbot import ChatBot
+from chatterbot import ChatBot
 
-#bot = ChatBot('MovieBot')
+bot = ChatBot('MovieBot')
 print('IMDBot: Hello There! My name is IMDBot. ', end='')
 userName = u.askForName() #set username for the first time
 print(f'IMDBOT: I just want to make sure I have your name right.')
@@ -113,12 +113,8 @@ while True:
             else:
                 print("IMDBOT: Sorry, I could not find anything about that.")
         else:
-<<<<<<< HEAD
-            #bot.get_response(user_input)
-            print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
-=======
-            print("IMDBOT:", bot.get_response(user_input))
->>>>>>> chatterbot-integration
+            bot.get_response(user_input)
+            #print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
 
     except(KeyboardInterrupt, EOFError, SystemExit) as e: #end conversation in case of fatal error or user inputs ctrl+c
         break
