@@ -113,8 +113,12 @@ while True:
             else:
                 print("IMDBOT: Sorry, I could not find anything about that.")
         else:
+<<<<<<< HEAD
             #bot.get_response(user_input)
             print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
+=======
+            print("IMDBOT:", bot.get_response(user_input))
+>>>>>>> chatterbot-integration
 
     except(KeyboardInterrupt, EOFError, SystemExit) as e: #end conversation in case of fatal error or user inputs ctrl+c
         break

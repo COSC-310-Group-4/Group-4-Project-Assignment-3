@@ -1,8 +1,10 @@
 {
-<<<<<<< HEAD
     "python.pythonPath": "C:\\Users\\Francisco\\anaconda3\\envs\\ChatBot\\python.exe"
 
+<<<<<<< HEAD
 =======
     "python.pythonPath": "/opt/anaconda3/envs/310/bin/python"
 >>>>>>> 744bf4c191963bd189fb3f220246c8415521b229
+=======
+>>>>>>> chatterbot-integration
 }
