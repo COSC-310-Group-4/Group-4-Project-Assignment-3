@@ -34,6 +34,7 @@ def isMember(movie, person):
                     target = index
                     print("IMDBot:",person.title(), 'was an actor in', movie.title(), 'and played the role of', actors[target].currentRole)
                     print("IMDBot: What else do you want to know about "+ person.title()+ "?")
+                    return 'Is an actor'
                 else:
                     index = index + 1
         #Checks to see if the person in a crew member (in the art department)
@@ -46,6 +47,7 @@ def isMember(movie, person):
                     target = index
                     print("IMDBot:", person.title(), 'was a crew member for', movie.title(), 'and this was his role:', art[target].notes)
                     print("IMDBot: What else do you want to know about "+ person.title()+ "?")
+                    return 'Is a crew member'
                 else:
                     index = index + 1
         #Checks to see if the person is a director for the movie
@@ -58,12 +60,14 @@ def isMember(movie, person):
                     target = index
                     print("IMDBot:", person.title(), 'was a director for', movie.title())
                     print("IMDBot: What else do you want to know about "+ person.title()+ "?")
+                    return 'Is a director'
                 else:
                     index = index + 1
     #Prints that the person is not a member of the movie's cast or crew
     else:
         print("IMDBot:", person.title(),"did not work on", movie.title())
         print("IMDBot: What else do you want to know about "+ person.title()+ "?")
+        return 'Not in movie'
 
 
 #display other movies this person has worked in
@@ -80,6 +84,7 @@ def otherRoles(person):
     print("IMDBot:", person.title(), "is in the following 5 movies: ")
     for i in range(5):
         print("\t", p.get('filmography')['actor'][i])
+    return p.get('filmography')['actor'][0] + ' >> Actor\'s top role'
 
 #Try to use/call otherRoles in this method because it is calling for filmogrpahy to avoid redundancy 
 #Get Bio of the person such as birthdate and other info
@@ -105,6 +110,7 @@ def giveBio(person, x):
             print(p['biography']) 
         else:
             print("Try Again")
+        return p
     except:
         print("IMDBot: Sorry, I can\'t find that person. What else can I help you with?")
 
@@ -122,7 +128,7 @@ def checker(userName, person_name, oldMovie, newMovie_name):
             print(f'IMDBot: Before I can check if {pName} was in {newMovie_name}, I need to confirm the movie.')
             checkMovie = f.searchForMovie(userName, newMovie_name) # Search for the new movie being talked about
             if (checkMovie == ''): # checkMovie will only return blank if the user said to stop searching
-                return
+                return 'User cancelled'
         else:
             oldMovie_name = oldMovie['title']
             if oldMovie_name != newMovie_name: # If the old movie and new movie names don't match
@@ -135,7 +141,7 @@ def checker(userName, person_name, oldMovie, newMovie_name):
                     if (sCheckFirst == 'y' or sy.findSyns(sCheckArr, 'yes') == 0): # If the user does want to search for the new movie name
                         checkMovie = f.searchForMovie(userName, newMovie_name)
                         if (checkMovie == ''): # checkMovie will only return blank if the user said to stop searching
-                            return
+                            return 'User Cancelled'
                         break
                     elif (sCheckFirst == 'n' or sy.findSyns(sCheckArr, 'no') == 0): # If the user does not want to search for the new movie name
                         print('IMDBot: Ok. I\'ll check if {pName} was in {oldMovie_name}.')
@@ -149,7 +155,10 @@ def checker(userName, person_name, oldMovie, newMovie_name):
         checkMovie_name = checkMovie['title']
         if(p in checkMovie):
             print(f'IMDBot: Yes, {pName} was in {checkMovie_name}!')
+            return True
         else:
             print(f'IMDBot: No, {pName} was not in {checkMovie_name}.')
+            return False
     except:
         print("IMDBot: Woops! Something went wrong. What else can I help you with?")
+        return 'Error Found'

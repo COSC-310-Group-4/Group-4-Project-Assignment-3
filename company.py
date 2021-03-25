@@ -12,14 +12,15 @@ def findCompany(movie): # Find the companies that produce the given movie
 
         if len(companies) == 0:
             print("IMDBot: There is no production company for this movie")
-            return
+            return 'No Production'
         else:
             print("IMDBot: The production company is: " + companies[0]['name'])
+            return companies[0]['name']
 
         return companies[0] # return the main company of the movie production
     except:
         print(f'IMDBot: Uh oh. Something went wrong. What else would you like to know about {movieName}?')
-        return ''
+        return 'Exception'
 
 
 def isProduction(company, movie): # Check if this company produced a certain movie
@@ -29,11 +30,13 @@ def isProduction(company, movie): # Check if this company produced a certain mov
         for c in mainMovieCompany:
             if c == company:
                 print('IMDBot: Yes, this company worked on ' + movie['title'])
+                return True
             else:
                 print('IMDBot: No, this company did not work on ' + movie['title'])
+                return False
     except:
         print(f'IMDBot: Uh oh. Something went wrong.')
-        return ''
+        return 'Exception'
                 
 def findMovieForCompany(userName):
     movie = ""

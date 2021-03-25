@@ -77,7 +77,7 @@ def findDirector(movie):
     except:
         print(f'IMDBot: Uh oh. I can\'t find any directors.')
         print('IMDBot: What else would you like to know about ' + movie['title'] + '?')
-        return '' 
+        return 'Exception' 
 
 def giveSummary(movie):
     try:
@@ -89,7 +89,7 @@ def giveSummary(movie):
         print(f'IMDBot: What else would you like to know about {title}?')
     except:
         print('IMDBot: Uh oh. I can\'t find a summary. What else would you like to know about' + movie['title'] + '?')
-    return movie
+    return summary
 
 def showCharacters(movie):
     title = movie['title']
@@ -107,7 +107,7 @@ def showCharacters(movie):
     except:
         print('IMDBot: Uh oh. I can\'t find any characters.')
     print(f'IMDBot: What else would you like to know about {title}?')
-    return movie
+    return movie['cast'][0]
 
 def runtime(movie):
     title = movie['title']
@@ -118,7 +118,7 @@ def runtime(movie):
     except: #Some short films don't have a runtime listed in IMDB
         print(f'IMDBot: Sorry. I can\'t find the runtime for {title} :(')
     print(f'IMDBot: What else would you like to know about {title}?')
-    return movie
+    return runtime
 
 # This is for checking which actor played a CHARACTER in a MOVIE
 def whoPlayed(userName, oldMovie, charName, newMovie_name):
@@ -128,7 +128,7 @@ def whoPlayed(userName, oldMovie, charName, newMovie_name):
             print(f'IMDBot: Before I can see who played {charName} in {newMovie_name}, I need to confirm the movie.')
             movie = searchForMovie(userName, newMovie_name)
             if (movie == ''): # will only be '' if user said to stop searching
-                return
+                return 'User cancel'
         else:
             oldMovie_name = oldMovie['title']
             if (newMovie_name == '' or (newMovie_name == oldMovie_name)):
@@ -143,7 +143,7 @@ def whoPlayed(userName, oldMovie, charName, newMovie_name):
                     if (sCheckFirst == 'y' or sy.findSyns(sCheckArr, 'yes') == 0): # If the user does want to search for the new movie name
                         movie = searchForMovie(userName, newMovie_name)
                         if (movie == ''): # movie will only return blank if the user said to stop searching
-                            return
+                            return 'User cancel'
                         break
                     elif (sCheckFirst == 'n' or sy.findSyns(sCheckArr, 'no') == 0): # If the user does not want to search for the new movie name
                         print('IMDBot: Ok. I\'ll see who played {charName} in {oldMovie_name}.')
@@ -166,8 +166,8 @@ def whoPlayed(userName, oldMovie, charName, newMovie_name):
                 castID += 1
         print(f'IMDBot: It looks like I can\'t find {charName} in {title}.')
         print(f'IMDBot: What else would you like to know about {title}?')
-        return
+        return 'Couldn\'t find the character'
     except:
         print(f'IMDBot: Uh oh. Something went wrong.')
         print(f'IMDBot: What else would you like to know about {title}?')
-        return
+        return 'Error handled'
