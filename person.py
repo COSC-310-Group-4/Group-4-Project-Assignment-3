@@ -1,5 +1,7 @@
 from logging import info
 import imdb
+import film as f
+import synonyms as sy
 
 ia = imdb.IMDb()
 
@@ -30,8 +32,8 @@ def isMember(movie, person):
             for i in actors:
                 if(str(i).find(person.title()) != -1):
                     target = index
-                    print("IMDBOT:",person.title(), 'was an actor in', movie.title(), 'and played the role of', actors[target].currentRole)
-                    print("IMDBOT: What else do you want to know about "+ person.title()+ "?")
+                    print("IMDBot:",person.title(), 'was an actor in', movie.title(), 'and played the role of', actors[target].currentRole)
+                    print("IMDBot: What else do you want to know about "+ person.title()+ "?")
                 else:
                     index = index + 1
         #Checks to see if the person in a crew member (in the art department)
@@ -42,8 +44,8 @@ def isMember(movie, person):
             for i in art:
                 if(str(i).find(person.title()) != -1):
                     target = index
-                    print("IMDBOT:", person.title(), 'was a crew member for', movie.title(), 'and this was his role:', art[target].notes)
-                    print("IMDBOT: What else do you want to know about "+ person.title()+ "?")
+                    print("IMDBot:", person.title(), 'was a crew member for', movie.title(), 'and this was his role:', art[target].notes)
+                    print("IMDBot: What else do you want to know about "+ person.title()+ "?")
                 else:
                     index = index + 1
         #Checks to see if the person is a director for the movie
@@ -54,14 +56,14 @@ def isMember(movie, person):
             for i in director:
                 if(str(i).find(person.title()) != -1):
                     target = index
-                    print("IMDBOT:", person.title(), 'was a director for', movie.title())
-                    print("IMDBOT: What else do you want to know about "+ person.title()+ "?")
+                    print("IMDBot:", person.title(), 'was a director for', movie.title())
+                    print("IMDBot: What else do you want to know about "+ person.title()+ "?")
                 else:
                     index = index + 1
     #Prints that the person is not a member of the movie's cast or crew
     else:
-        print("IMDBOT:", person.title(),"did not work on", movie.title())
-        print("IMDBOT: What else do you want to know about "+ person.title()+ "?")
+        print("IMDBot:", person.title(),"did not work on", movie.title())
+        print("IMDBot: What else do you want to know about "+ person.title()+ "?")
 
 
 #display other movies this person has worked in
@@ -75,7 +77,7 @@ def otherRoles(person):
     p = ia.get_person(pers_ID, info=['filmography'])
 
     #prints 5 of the person's newest movies
-    print("IMDBOT:", person.title(), "is in the following 5 movies: ")
+    print("IMDBot:", person.title(), "is in the following 5 movies: ")
     for i in range(5):
         print("\t", p.get('filmography')['actor'][i])
 
@@ -83,41 +85,71 @@ def otherRoles(person):
 #Get Bio of the person such as birthdate and other info
 #left to add... Get the latest movie worked by an actor
 def giveBio(person, x):
-    pers = ia.search_person(person.title())
+    try:
+        pers = ia.search_person(person.title())
 
-    #Gets the imdb code for person/movie and put into a varaible
-    p = ia.get_person(pers[0].personID)
+        #Gets the imdb code for person/movie and put into a varaible
+        p = ia.get_person(pers[0].personID)
 
-    #x==1 then it get birthday/birth date
-    if(x==1):
-        print("IMDBOT: The birth date of ", person.title(),"is", p['birth date'])
-    # x==2 gets the birthplace of the actor
-    elif(x==2):
-        print("IMDBOT: The birth place of ", person.title(),"is", p['birth info']['birth place'])
-    # x==3 gets latest movie the actor is working 
-    elif(x==3):
-        print("IMDBOT: The latest movie", person.title(), "has worked in is", p.get('filmography')['actor'][1])
-    elif(x==4):
-        # Bio needs to made shorter
-        print(p['biography']) 
-    else:
-        print("Try Again")
+        #x==1 then it get birthday/birth date
+        if(x==1):
+            print("IMDBot: The birth date of ", person.title(),"is", p['birth date'])
+        # x==2 gets the birthplace of the actor
+        elif(x==2):
+            print("IMDBot: The birth place of ", person.title(),"is", p['birth info']['birth place'])
+        # x==3 gets latest movie the actor is working 
+        elif(x==3):
+            print("IMDBot: The latest movie", person.title(), "has worked in is", p.get('filmography')['actor'][1])
+        elif(x==4):
+            # Bio needs to made shorter
+            print(p['biography']) 
+        else:
+            print("Try Again")
+    except:
+        print("IMDBot: Sorry, I can\'t find that person. What else can I help you with?")
 
-# Using in operator in Imdb api to check if {any actor name} was in a {any movie name}
-def checker(person, movie):
-    personName = person['name']
-    movieName = movie['title']
+# Using in operator in Imdb api to check if {any actor name} was in {any movie name}
+def checker(userName, person_name, oldMovie, newMovie_name):
+    try:
+        # Finds the person in IMDB, gets the id code for person
+        pers = ia.search_person(person_name.title())
+        p = ia.get_person(pers[0].personID)
+        pName = p['name']
 
-    pers = ia.search_person(person.title())
-    mov = ia.search_movie(movie.title())
+        checkMovie = '' # Variable to hold the movie id of the movie that will be checked
 
-    #Gets the imdb code for person/movie and put into a varaible
-    p = ia.get_person(pers[0].personID)
-    m = ia.get_movie(mov[0].movieID)
+        if(oldMovie == ''): # If no movie was being talked about previously
+            print(f'IMDBot: Before I can check if {pName} was in {newMovie_name}, I need to confirm the movie.')
+            checkMovie = f.searchForMovie(userName, newMovie_name) # Search for the new movie being talked about
+            if (checkMovie == ''): # checkMovie will only return blank if the user said to stop searching
+                return
+        else:
+            oldMovie_name = oldMovie['title']
+            if oldMovie_name != newMovie_name: # If the old movie and new movie names don't match
+                print(f'IMDBot: Before I can check if {pName} was in {newMovie_name}, I need to confirm the movie.')
+                while True:
+                    print(f'IMDBot: We were talking about {oldMovie_name}. Want me to search for {newMovie_name}?')
+                    searchCheck = input(f'userName: ')
+                    sCheckFirst = searchCheck[:1].lower() # Save first letter (might only need y or n)
+                    sCheckArr = sy.getArray(searchCheck, []) # Turn user input into array for synonym checking
+                    if (sCheckFirst == 'y' or sy.findSyns(sCheckArr, 'yes') == 0): # If the user does want to search for the new movie name
+                        checkMovie = f.searchForMovie(userName, newMovie_name)
+                        if (checkMovie == ''): # checkMovie will only return blank if the user said to stop searching
+                            return
+                        break
+                    elif (sCheckFirst == 'n' or sy.findSyns(sCheckArr, 'no') == 0): # If the user does not want to search for the new movie name
+                        print('IMDBot: Ok. I\'ll check if {pName} was in {oldMovie_name}.')
+                        checkMovie = oldMovie
+                        break
+                    else:
+                        print(f'IMDBot: I\'m sorry, I don\'t understand. ')
+            else: # if the old movie name and new movie name match
+                checkMovie = oldMovie # check using the old movie because we already have the movie ID
 
-    if(p in m):
-        print(f'IMDBot: Yes, {personName} was in {movieName}!')
-    else:
-        print(f'IMDBot: No, {personName} was not in {movieName}.') 
-
-
+        checkMovie_name = checkMovie['title']
+        if(p in checkMovie):
+            print(f'IMDBot: Yes, {pName} was in {checkMovie_name}!')
+        else:
+            print(f'IMDBot: No, {pName} was not in {checkMovie_name}.')
+    except:
+        print("IMDBot: Woops! Something went wrong. What else can I help you with?")

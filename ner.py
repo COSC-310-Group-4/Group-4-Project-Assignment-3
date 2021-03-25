@@ -11,11 +11,14 @@ import time
 
 # TODO: DELETE LATER. FOR TESTING ONLY
 print("Loading spaCy...")
-# t0 = time.time()
+t0 = time.time()
 
-# TODO: For integration, this should be done when the program first loads so that spacy is trained before user interaction.
 # Load pre-existing spacy model and train it. This will take a few seconds. Calls from nerTrainer.py
 nlp = nerTrainer.trainSpacy()
+
+# TODO: DELETE LATER. FOR TESTING ONLY.
+t1 = time.time()
+print('Loading completed in ' + "{:.1f}".format(t1-t0) + ' seconds.')
 
 # Get the pipeline component
 ner = nlp.get_pipe("ner")
@@ -55,7 +58,8 @@ def listEntities(text):
         entities.append(ent.text) # Add all entities to the array
     return entities # return an array of entity strings
 
-# TODO: DELETE LATER. FOR TESTING ONLY.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# FOR TESTING ONLY.
 # t1 = time.time()
 # print("Load time: " + str(t1-t0))
 # while True:
@@ -66,11 +70,11 @@ def listEntities(text):
 #     else:
 #         print("Entities: ", end="")
 #         print(listEntities(text))
-#         print("People: ")
+#         print("People: ", end="")
 #         print(getPersonName(text))
-#         print("Works: ")
+#         print("Works: ", end="")
 #         print(getMovieName(text))
-#         print("Organizations:")
+#         print("Organizations: ", end="")
 #         print(getOrgName(text))
-
 # print("Exit")
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
