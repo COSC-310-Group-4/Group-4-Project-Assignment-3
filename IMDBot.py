@@ -8,7 +8,7 @@ import spellinghandler as sp
 import synonyms as sy
 from chatterbot import ChatBot
 
-#bot = ChatBot('MovieBot')
+bot = ChatBot('MovieBot')
 print('IMDBot: Hello There! My name is IMDBot. ', end='')
 userName = u.askForName() #set username for the first time
 print(f'IMDBOT: I just want to make sure I have your name right.')
@@ -49,17 +49,17 @@ while True:
             else:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about to list the characters. Try to ask me to find a movie first!')
         
-        elif ('who' and ('played' or 'voiced') in user_input):
+        elif ('who' in user_input and ('played' in user_input or 'voiced' in user_input)):
             if 'movie' in locals():
                 person = f.whoPlayed(userName, movie, person_name, movie_name)
             else:
                 person = f.whoPlayed(userName, '', person_name, movie_name)
         
-        elif (sy.findSyns(user_input, 'change') == 0 and ('name' or 'username') in user_input):
+        elif (sy.findSyns(user_input, 'change') == 0 and ('name' in user_input or 'username' in user_input)):
             userName = u.checkName(userName)
             print('How can I help you?') #concatenates to "IMDBot: That's a cool name, userName! "
         
-        elif('what' and ('other' or 'another') in user_input) :
+        elif('what' in user_input and ('other' in user_input or 'another' in user_input)) :
             #takes in user input and calls otherRoles() from person.py
             if 'movie' in locals():
                 print("IMDBot: Hmm... let me think...")
@@ -130,7 +130,7 @@ while True:
             c.isProduction(company_name, otherMovie)
             print("IMDBot: What else would you like to know?")
             
-        elif (('how' and 'long') or 'runtime' in user_input or sy.findSyns(user_input, 'length') == 0): # Moved to the bottom because it can get called by accident if near top
+        elif ((('how' and 'long') in user_input) or ('runtime' in user_input or sy.findSyns(user_input, 'length') == 0)): # Moved to the bottom because it can get called by accident if near top
             if 'movie' in locals():
                 movie = f.runtime(movie)
             else:
@@ -144,14 +144,14 @@ while True:
             else:
                 print("IMDBot: Sorry, I could not find anything about that.")
                 
-        elif ('summary' or 'plot' in user_input):
+        elif (('summary' in user_input) or ('plot' in user_input)):
             if 'movie' in locals():
                 movie = f.giveSummary(movie)
             else:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about. Try to ask me to find a movie :)')
 
         else:
-            #bot.get_response(user_input)
+            bot.get_response(user_input)
             print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
 
     except(KeyboardInterrupt, EOFError, SystemExit) as e: #end conversation in case of fatal error or user inputs ctrl+c
