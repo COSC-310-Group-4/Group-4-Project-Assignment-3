@@ -8,7 +8,7 @@ import spellinghandler as sp
 import synonyms as sy
 from chatterbot import ChatBot
 
-bot = ChatBot('MovieBot')
+#bot = ChatBot('MovieBot')
 print('IMDBot: Hello There! My name is IMDBot. ', end='')
 userName = u.askForName() #set username for the first time
 print(f'IMDBOT: I just want to make sure I have your name right.')
@@ -30,91 +30,129 @@ while True:
         
         if ('bye' in user_input or sy.findSyns(user_input, 'goodbye') == 0): #end conversation if user says bye
             break
+
         elif ('nevermind' in user_input):
             print(f'IMDBot: Ok. How can I help?')
+
         elif ((sy.findSyns(user_input, 'find') == 0 or sy.findSyns(user_input, 'search') == 0) and ('another' in user_input or sy.findSyns(user_input, 'movie') == 0)): # pick the movie to talk about
             movie = f.findMovie(userName)
+
         elif (sy.findSyns(user_input, 'director') == 0 or sy.findSyns(user_input, 'directed') == 0): #find the director of the movie we're talking about and store as object for follow up questions about them
             if 'movie' in locals(): # check if a movie object is already saved (a movie is being spoken about)
                 person = f.findDirector(movie)
             else:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about to find the director. Try to ask me to find a movie :)') # if a movie is not being currently discussed, tell user it doesn't understand 
-        elif (sy.findSyns(user_input, 'summary') == 0 or sy.findSyns(user_input, 'plot') == 0):
-            if 'movie' in locals():
-                movie = f.giveSummary(movie)
-            else:
-                print('IMDBot: Sorry, I don\'t know which movie you\'re asking about. Try to ask me to find a movie :)')
+        
         elif (sy.findSyns(user_input, 'characters') == 0):
             if 'movie' in locals():
                 movie = f.showCharacters(movie)
             else:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about to list the characters. Try to ask me to find a movie first!')
-        elif (sy.findSyns(user_input, 'played') == 0 or sy.findSyns(user_input, 'voiced') == 0):
+        
+        elif ('who' and ('played' or 'voiced') in user_input):
             if 'movie' in locals():
-                person = f.whoPlayed(movie, person_name)
+                person = f.whoPlayed(userName, movie, person_name, movie_name)
             else:
-                print('IMDBot: Sorry, I need to know which movie you\'re talking about first. Please ask me to look up a movie first.')
+                person = f.whoPlayed(userName, '', person_name, movie_name)
+        
         elif (sy.findSyns(user_input, 'change') == 0 and ('name' or 'username') in user_input):
             userName = u.checkName(userName)
             print('How can I help you?') #concatenates to "IMDBot: That's a cool name, userName! "
+        
         elif('what' and ('other' or 'another') in user_input) :
             #takes in user input and calls otherRoles() from person.py
             if 'movie' in locals():
-                print("IMDBOT: Hmm... let me think...")
-                p.otherRoles(person)
+                print("IMDBot: Hmm... let me think...")
+                p.otherRoles(person) # Takes person object
             else:
-                print("IMDBOT: Sorry I am not sure how to help with that.")
-        elif(sy.findSyns(user_input, 'birthday') == 0 or sy.findSyns(user_input, 'born') == 0):
+                print("IMDBot: Sorry I am not sure how to help with that.")
+        
+        elif('birthday' in user_input or sy.findSyns(user_input, 'birthday') == 0 or sy.findSyns(user_input, 'born') == 0):
             #Call giveBio() from person.py
             #Search for birthday/birthdate
-            print("IMDBOT: Hmm... let me think...")
-            p.giveBio(person_name, 1)
-            print("IMDBOT: What else would you like to know?")
+            print("IMDBot: Hmm... let me think...")
+            if 'person' in locals():
+                p.giveBio(person['name'], 1)
+            elif person_name != '':
+                p.giveBio(person_name, 1)
+            else:
+                print("IMDBot: I\'m not sure who you\'re asking about.")
+            print("IMDBot: What else would you like to know?")
+        
         elif(('birth' and 'place') in user_input):
             #Search for birth place of an actor
-            print("IMDBOT: Hmm... let me think...")
-            p.giveBio(person_name, 2)
-            print("IMDBOT: What else would you like to know?")
+            print("IMDBot: Hmm... let me think...")
+            if 'person' in locals():
+                p.giveBio(person['name'], 2)
+            elif person_name != '':
+                p.giveBio(person_name, 2)
+            else:
+                print("IMDBot: I\'m not sure who you\'re asking about.")
+            print("IMDBot: What else would you like to know?")
+        
         elif(sy.findSyns(user_input, 'latest') == 0 and sy.findSyns(user_input, 'movie') == 0):
             #Search for a latest movie by an actor
-            print("IMDBOT: Hmm... let me think...")
-            p.giveBio(person_name, 3)
-            print("IMDBOT: What else would you like to know?")
-        elif('check' and 'if' and 'in' in user_input):
-            #Check if a {actor} is in {movie}
-            if 'movie' and 'person' in locals():
-                p.checker(person, movie)
-                print("IMDBot: What else would you like to know?")
+            print("IMDBot: Hmm... let me think...")
+            if 'person' in locals():
+                p.giveBio(person['name'], 3)
+            elif person_name != '':
+                p.giveBio(person_name, 3)
             else:
-                print("IMDBot: I need to confirm both the movie and person you\'re talking about first. Please ask me about a movie or a person first.")
+                print("IMDBot: I\'m not sure who you\'re asking about.")
+            print("IMDBot: What else would you like to know?")
+        
         elif('bio' in user_input or sy.findSyns(user_input, "biography") == 0):
             # Gets bio of an actor
             # bio {any actor name}
-            p.giveBio(person_name, 4)
-            print("IMDBOT: What else would you like to know?")
-        elif ('production' in user_input and (sy.findSyns('company') == 0 or sy.findSyns('companies') == 0)):
+            if 'person' in locals():
+                p.giveBio(person['name'], 4)
+            elif person_name != '':
+                p.giveBio(person_name, 4)
+            else:
+                print("IMDBot: I\'m not sure who you\'re asking about.")
+            print("IMDBot: What else would you like to know?")
+        
+        elif('check' and 'if' and 'in' in user_input and (person_name != '') and (movie_name != '')):
+            #Check if a {actor} is in {movie}
+            if 'movie' in locals():
+                p.checker(userName, person_name, movie, movie_name)
+            else:
+                p.checker(userName, person_name, '', movie_name)
+            print('IMDBot: What else can I help you with?')
+        
+        elif ('production' and 'company' in user_input or sy.findSyns(user_input, 'companies') == 0):
             print("IMDBot: Okay, let me search the production companies for you!") # buffer for searching companies
             company = c.findCompany(movie) # list the production companies of the movie asked
             print('IMDBot: What else would you like to know about the company? :)')
-        elif (('produced' and 'other') in user_input):
+
+        elif ('other' in user_input and sy.findSyns(user_input, 'produce')):
             otherMovie = c.findMovieForCompany(userName)
             c.isProduction(company_name, otherMovie)
-            print("IMDBOT: What else would you like to know?")
+            print("IMDBot: What else would you like to know?")
+            
         elif (('how' and 'long') or 'runtime' in user_input or sy.findSyns(user_input, 'length') == 0): # Moved to the bottom because it can get called by accident if near top
             if 'movie' in locals():
                 movie = f.runtime(movie)
             else:
                 print('IMDBot: Sorry, I need to know which movie you want me to check the runtime for. Please ask me to find a movie first.')
+        
         elif(('worked' and 'on') or ('role' and 'in') or ('acted' and 'in') in user_input): # Moved to bottom because it can get called by accident if at the top
             #takes in user input and calls isMember() from person.py
             if 'movie' in locals():
-                print("IMDBOT: Hmm... let me check...")
-                p.isMember(movie, person)
+                print("IMDBot: Hmm... let me check...")
+                p.isMember(movie, person) # Takes movie and person objects so they must already be defined
             else:
-                print("IMDBOT: Sorry, I could not find anything about that.")
+                print("IMDBot: Sorry, I could not find anything about that.")
+                
+        elif ('summary' or 'plot' in user_input):
+            if 'movie' in locals():
+                movie = f.giveSummary(movie)
+            else:
+                print('IMDBot: Sorry, I don\'t know which movie you\'re asking about. Try to ask me to find a movie :)')
+
         else:
-            bot.get_response(user_input)
-            #print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
+            #bot.get_response(user_input)
+            print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
 
     except(KeyboardInterrupt, EOFError, SystemExit) as e: #end conversation in case of fatal error or user inputs ctrl+c
         break

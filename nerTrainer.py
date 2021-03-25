@@ -100,10 +100,14 @@ def trainSpacy(): # This is called in ner.py only. DO NOT call it elsewhere.
         ("Check if John Hurt was in Harry Potter and the Sorcerer's Stone", {"entities": [(9, 18, "PERSON"), (26, 63, "WORK_OF_ART")]}),
         ("Check if Julie Walters was in Harry Potter and the Deathly Hallows: Part 1", {"entities": [(9, 22, "PERSON"), (30, 74, "WORK_OF_ART")]}),
         ("Check if Bob Odenkirk was in Incredibles 2", {"entities": [(9, 21, "PERSON"), (29, 42, "WORK_OF_ART")]}),
+        ("Check if Chadwick Boseman was in Avengers: End Game.", {"entities": [(9, 25, "PERSON"), (33, 51, "WORK_OF_ART")]}),
+        ("Check if Benedict Cumberbatch was in Avengers: End Game", {"entities": [(9, 29, "PERSON"), (37, 55, "WORK_OF_ART")]}),
+        ("Check if Anthony Mackie was in Avengers: Infinity War.", {"entities": [(9, 23, "PERSON"), (31, 53, "WORK_OF_ART")]}),
+        ("Check if Richard Griffiths was in Harry Potter and the Chamber of Secrets", {"entities": [(9, 26, "PERSON"), (34, 73, "WORK_OF_ART")]}),
         ("Give me the bio of Leonardo DiCaprio", {"entities": [(19, 36, "PERSON")]}),
         ("Give me the bio of Joseph Gordon-Levitt", {"entities": [(19, 39, "PERSON")]}),
         ("What is the bio of Elliot Page?", {"entities": [(19, 30, "PERSON")]}),
-        ("What is the bio of Michael Caine?", {"entities": [(19, 32, "PERSON")]}),
+        ("What is the bio of Michael Caine?", {"entities": [(19, 32, "PERSON")]})
     ]
 
     # Use the internal training API and run randomized training loop
