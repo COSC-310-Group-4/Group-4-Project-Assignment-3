@@ -24,9 +24,9 @@ while True:
         company_name = ner.getOrgName(raw_user_input)
         user_input = sp.fixSentence(raw_user_input, entities)
         user_input = sy.getArray(user_input, entities) # User input is now an array. To look for keywords: if 'keyword' in user_input
-        
-        for word in user_input: # Turn all words into lowercase for easier search for keywords.
-            word.lower()
+
+        for i in range (len(user_input)):
+            user_input[i] = user_input[i].lower()
         
         if ('bye' in user_input or sy.findSyns(user_input, 'goodbye') == 0): #end conversation if user says bye
             break
@@ -49,7 +49,7 @@ while True:
             else:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about to list the characters. Try to ask me to find a movie first!')
         
-        elif ('who' in user_input and ('played' in user_input or 'voiced' in user_input)):
+        elif (('who' in user_input) and ('played' in user_input) or ('voiced' in user_input)):
             if 'movie' in locals():
                 person = f.whoPlayed(userName, movie, person_name, movie_name)
             else:
@@ -61,13 +61,13 @@ while True:
         
         elif('what' in user_input and ('other' in user_input or 'another' in user_input)) :
             #takes in user input and calls otherRoles() from person.py
-            if 'movie' in locals():
+            if 'person' in locals():
                 print("IMDBot: Hmm... let me think...")
                 p.otherRoles(person) # Takes person object
             else:
                 print("IMDBot: Sorry I am not sure how to help with that.")
         
-        elif('birthday' in user_input or sy.findSyns(user_input, 'birthday') == 0 or sy.findSyns(user_input, 'born') == 0):
+        elif(sy.findSyns(user_input, 'birthday') == 0 or ('when' in user_input and sy.findSyns(user_input, 'born') == 0)):
             #Call giveBio() from person.py
             #Search for birthday/birthdate
             print("IMDBot: Hmm... let me think...")
@@ -79,7 +79,7 @@ while True:
                 print("IMDBot: I\'m not sure who you\'re asking about.")
             print("IMDBot: What else would you like to know?")
         
-        elif(('birth' and 'place') in user_input):
+        elif(('where' in user_input or 'place' in user_input) and ('born' in user_input or 'birth' in user_input)):
             #Search for birth place of an actor
             print("IMDBot: Hmm... let me think...")
             if 'person' in locals():
@@ -112,7 +112,7 @@ while True:
                 print("IMDBot: I\'m not sure who you\'re asking about.")
             print("IMDBot: What else would you like to know?")
         
-        elif(('check' and 'if' and 'in') in user_input and (person_name != '') and (movie_name != '')):
+        elif((('check' and 'if' and 'in') in user_input) and (person_name != '') and (movie_name != '')):
             #Check if a {actor} is in {movie}
             if 'movie' in locals():
                 p.checker(userName, person_name, movie, movie_name)
@@ -136,7 +136,7 @@ while True:
             else:
                 print('IMDBot: Sorry, I need to know which movie you want me to check the runtime for. Please ask me to find a movie first.')
         
-        elif(('worked' and 'on' in user_input) or ('role' and 'in' in user_input) or ('acted' and 'in' in user_input)): # Moved to bottom because it can get called by accident if at the top
+        elif(('worked' in user_input and 'on' in user_input) or ('role' in user_input and 'in' in user_input) or ('acted' in user_input and 'in' in user_input)): # Moved to bottom because it can get called by accident if at the top
             #takes in user input and calls isMember() from person.py
             if 'movie' in locals():
                 print("IMDBot: Hmm... let me check...")
@@ -151,8 +151,9 @@ while True:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about. Try to ask me to find a movie :)')
 
         else:
+            #print("ELSE")
             bot.get_response(raw_user_input)
-            print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
+            #print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
 
     except(KeyboardInterrupt, EOFError, SystemExit) as e: #end conversation in case of fatal error or user inputs ctrl+c
         break
