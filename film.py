@@ -67,13 +67,14 @@ def showCharacters(movie):
     while (castID < len(movie['cast'])): #need to iterate through the cast's roles
         character = movie['cast'][castID].currentRole
         actor = movie['cast'][castID]
+        first_character = movie['cast'][0]  #get first character
         if (str(character).find('Various') != -1) or (str(character).find('Additional') != -1): #not including any various or additional background characters in this list
             break
         else:
             print(f'\t{character} played by {actor}')
         castID += 1
     print(f'IMDBot: What else would you like to know about {title}?')
-    return movie
+    return first_character
 
 def runtime(movie):
     title = movie['title']
