@@ -112,7 +112,7 @@ while True:
                 print("IMDBot: I\'m not sure who you\'re asking about.")
             print("IMDBot: What else would you like to know?")
         
-        elif('check' and 'if' and 'in' in user_input and (person_name != '') and (movie_name != '')):
+        elif(('check' and 'if' and 'in') in user_input and (person_name != '') and (movie_name != '')):
             #Check if a {actor} is in {movie}
             if 'movie' in locals():
                 p.checker(userName, person_name, movie, movie_name)
@@ -152,7 +152,7 @@ while True:
 
         else:
             bot.get_response(raw_user_input)
-            #print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
+            print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
 
     except(KeyboardInterrupt, EOFError, SystemExit) as e: #end conversation in case of fatal error or user inputs ctrl+c
         break
