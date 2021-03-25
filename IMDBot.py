@@ -43,7 +43,7 @@ while True:
             else:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about to find the director. Try to ask me to find a movie :)') # if a movie is not being currently discussed, tell user it doesn't understand 
         
-        elif (sy.findSyns(user_input, 'characters') == 0):
+        elif (sy.findSyns(user_input, 'character') == 0):
             if 'movie' in locals():
                 movie = f.showCharacters(movie)
             else:
