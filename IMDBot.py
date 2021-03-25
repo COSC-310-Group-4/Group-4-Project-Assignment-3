@@ -7,20 +7,20 @@ import user as u
 # import ner
 # import spellinghandler as sp
 # import synonyms as sy
-import gui as g
+import gui
 
 #from chatterbot import ChatBot
 
 # Create IMDBotGUI
 root = Tk()
-imdbotgui = g.IMDBotGUI(root)
+imdbotgui = gui.IMDBotGUI(root)
 
 #bot = ChatBot('MovieBot')
 imdbotgui.addToOutputBox('IMDBot: Hello There! My name is IMDBot. ')
 userName = u.askForName(imdbotgui) #set username for the first time
-# imdbotgui.addToOutputBox('IMDBOT: I just want to make sure I have your name right.')
-# userName = u.checkName(userName,imdbotgui) #check username if correct. method can also be used if user wants to change their username
-# imdbotgui.addToOutputBox(f'I am a bot who knows all about movies. How can I help you today?') #concatenates to "IMDBot: That's a cool name, userName! "
+imdbotgui.addToOutputBox('IMDBOT: I just want to make sure I have your name right.')
+userName = u.checkName(userName,imdbotgui) #check username if correct. method can also be used if user wants to change their username
+imdbotgui.addToOutputBox(f'I am a bot who knows all about movies. How can I help you today?') #concatenates to "IMDBot: That's a cool name, userName! "
 
 
 # while True:
