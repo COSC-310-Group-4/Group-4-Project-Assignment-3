@@ -42,7 +42,7 @@ def fixSentence(sentence, entityArray):
         else:
             wrongword = spell.unknown([word]) # assign the mispelled word to wrongword variable
 
-            if wrongword != None: # if wrong word exists, fix the word
+            if (len(wrongword)==1): # if wrong word exists, fix the word
                 word = fixWord(word)
                 mistakeFound = True
             

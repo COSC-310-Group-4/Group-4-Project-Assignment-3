@@ -105,6 +105,9 @@ def giveBio(person, x):
 
 # Using in operator in Imdb api to check if {any actor name} was in a {any movie name}
 def checker(person, movie):
+    personName = person['name']
+    movieName = movie['title']
+
     pers = ia.search_person(person.title())
     mov = ia.search_movie(movie.title())
 
@@ -113,8 +116,8 @@ def checker(person, movie):
     m = ia.get_movie(mov[0].movieID)
 
     if(p in m):
-        print("YES!") #Update this, Full sentences
+        print(f'IMDBot: Yes, {personName} was in {movieName}!')
     else:
-        print("NO!") #Update this, Full sentences
+        print(f'IMDBot: No, {personName} was not in {movieName}.') 
 
 
