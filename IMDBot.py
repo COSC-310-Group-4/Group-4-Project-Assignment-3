@@ -17,12 +17,12 @@ print(f'I am a bot who knows all about movies. How can I help you today?') #conc
 
 while True:
     try:
-        user_input = input(f'{userName}: ') #collect user input for this iteration.
-        entities = ner.listEntities(user_input)
-        movie_name = ner.getMovieName(user_input)
-        person_name = ner.getPersonName(user_input)
-        company_name = ner.getOrgName(user_input)
-        user_input = sp.fixSentence(user_input, entities)
+        raw_user_input = input(f'{userName}: ') #collect user input for this iteration.
+        entities = ner.listEntities(raw_user_input)
+        movie_name = ner.getMovieName(raw_user_input)
+        person_name = ner.getPersonName(raw_user_input)
+        company_name = ner.getOrgName(raw_user_input)
+        user_input = sp.fixSentence(raw_user_input, entities)
         user_input = sy.getArray(user_input, entities) # User input is now an array. To look for keywords: if 'keyword' in user_input
         
         for word in user_input: # Turn all words into lowercase for easier search for keywords.
@@ -120,7 +120,7 @@ while True:
                 p.checker(userName, person_name, '', movie_name)
             print('IMDBot: What else can I help you with?')
         
-        elif ('production' and 'company' in user_input or sy.findSyns(user_input, 'companies') == 0):
+        elif (('production' and 'company') in user_input or sy.findSyns(user_input, 'companies') == 0):
             print("IMDBot: Okay, let me search the production companies for you!") # buffer for searching companies
             company = c.findCompany(movie) # list the production companies of the movie asked
             print('IMDBot: What else would you like to know about the company? :)')
@@ -136,7 +136,7 @@ while True:
             else:
                 print('IMDBot: Sorry, I need to know which movie you want me to check the runtime for. Please ask me to find a movie first.')
         
-        elif(('worked' and 'on') or ('role' and 'in') or ('acted' and 'in') in user_input): # Moved to bottom because it can get called by accident if at the top
+        elif(('worked' and 'on' in user_input) or ('role' and 'in' in user_input) or ('acted' and 'in' in user_input)): # Moved to bottom because it can get called by accident if at the top
             #takes in user input and calls isMember() from person.py
             if 'movie' in locals():
                 print("IMDBot: Hmm... let me check...")
@@ -151,8 +151,8 @@ while True:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about. Try to ask me to find a movie :)')
 
         else:
-            bot.get_response(user_input)
-            print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
+            bot.get_response(raw_user_input)
+            #print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
 
     except(KeyboardInterrupt, EOFError, SystemExit) as e: #end conversation in case of fatal error or user inputs ctrl+c
         break
