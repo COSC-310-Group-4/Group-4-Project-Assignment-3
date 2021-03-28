@@ -35,11 +35,7 @@ def isMember(movie, person):
                     movieAndPerson = 'test '+ movie.title() +' and '+ person.title()
                     print("IMDBot:",person.title(), 'was an actor in', movie.title(), 'and played the role of', actors[target].currentRole)
                     print("IMDBot: What else do you want to know about "+ person.title()+ "?")
-<<<<<<< Updated upstream
-                    return 'Is an actor'
-=======
                     return movieAndPerson
->>>>>>> Stashed changes
                 else:
                     index = index + 1
         #Checks to see if the person in a crew member (in the art department)
@@ -72,11 +68,7 @@ def isMember(movie, person):
     else:
         print("IMDBot:", person.title(),"did not work on", movie.title())
         print("IMDBot: What else do you want to know about "+ person.title()+ "?")
-<<<<<<< Updated upstream
         return 'Not in movie'
-=======
-        
->>>>>>> Stashed changes
 
 
 #display other movies this person has worked in
