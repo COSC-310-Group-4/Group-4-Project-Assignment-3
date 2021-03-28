@@ -17,7 +17,7 @@ def findCompany(movie): # Find the companies that produce the given movie
             print("IMDBot: The production company is: " + companies[0]['name'])
             return companies[0]['name']
 
-        return companies[0] # return the main company of the movie production
+        return companies[0]['name'] # return the main company of the movie production
     except:
         print(f'IMDBot: Uh oh. Something went wrong. What else would you like to know about {movieName}?')
         return 'Exception'

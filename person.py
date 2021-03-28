@@ -32,9 +32,14 @@ def isMember(movie, person):
             for i in actors:
                 if(str(i).find(person.title()) != -1):
                     target = index
+                    movieAndPerson = 'test '+ movie.title() +' and '+ person.title()
                     print("IMDBot:",person.title(), 'was an actor in', movie.title(), 'and played the role of', actors[target].currentRole)
                     print("IMDBot: What else do you want to know about "+ person.title()+ "?")
+<<<<<<< Updated upstream
                     return 'Is an actor'
+=======
+                    return movieAndPerson
+>>>>>>> Stashed changes
                 else:
                     index = index + 1
         #Checks to see if the person in a crew member (in the art department)
@@ -67,7 +72,11 @@ def isMember(movie, person):
     else:
         print("IMDBot:", person.title(),"did not work on", movie.title())
         print("IMDBot: What else do you want to know about "+ person.title()+ "?")
+<<<<<<< Updated upstream
         return 'Not in movie'
+=======
+        
+>>>>>>> Stashed changes
 
 
 #display other movies this person has worked in
@@ -98,13 +107,19 @@ def giveBio(person, x):
 
         #x==1 then it get birthday/birth date
         if(x==1):
-            print("IMDBot: The birth date of ", person.title(),"is", p['birth date'])
+            birthdate = p['birth date']
+            print("IMDBot: The birth date of", person.title(),"is", birthdate)
+            return birthdate
         # x==2 gets the birthplace of the actor
         elif(x==2):
-            print("IMDBot: The birth place of ", person.title(),"is", p['birth info']['birth place'])
+            birthplace = p['birth info']['birth place']
+            print("IMDBot: The birth place of ", person.title(),"is", birthplace)
+            return birthplace
         # x==3 gets latest movie the actor is working 
         elif(x==3):
-            print("IMDBot: The latest movie", person.title(), "has worked in is", p.get('filmography')['actor'][1])
+            personName = person.title()
+            latestFilm = p.get('filmography')['actor'][1]
+            print(f"IMDBot: The latest movie {personName} has worked in is {latestFilm}")
         elif(x==4):
             # Bio needs to made shorter
             print(p['biography']) 
