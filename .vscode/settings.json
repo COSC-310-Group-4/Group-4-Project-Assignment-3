@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
     "python.pythonPath": "/opt/anaconda3/envs/COSC310/bin/python"
+=======
+    "python.pythonPath": "C:\\Users\\orvin\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
+>>>>>>> pos-tagging
 }

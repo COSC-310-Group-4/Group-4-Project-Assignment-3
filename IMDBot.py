@@ -6,6 +6,7 @@ import user as u
 import ner
 import spellinghandler as sp
 import synonyms as sy
+import pos-tagging as pt
 from chatterbot import ChatBot
 
 bot = ChatBot('MovieBot')
