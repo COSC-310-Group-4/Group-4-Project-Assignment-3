@@ -6,6 +6,7 @@ import user as u
 import ner
 import spellinghandler as sp
 import synonyms as sy
+import pos-tagging as pt
 from chatterbot import ChatBot
 
 bot = ChatBot('MovieBot')
@@ -23,6 +24,7 @@ while True:
         person_name = ner.getPersonName(user_input)
         company_name = ner.getOrgName(user_input)
         user_input = sp.fixSentence(user_input, entities)
+        part_of_speech = pt.getPosSentenceEntity(user_input,entities) # array of tuples consisting pos and the word
         user_input = sy.getArray(user_input, entities) # User input is now an array. To look for keywords: if 'keyword' in user_input
         
         for word in user_input: # Turn all words into lowercase for easier search for keywords.
