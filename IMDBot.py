@@ -24,6 +24,7 @@ while True:
         person_name = ner.getPersonName(raw_user_input)
         company_name = ner.getOrgName(raw_user_input)
         user_input = sp.fixSentence(raw_user_input, entities)
+        tagged = pt.getPosSentenceEntity(user_input,entities) # get the Part of speech of the spell checked sentence in the form of arrays containing tuples
         user_input = sy.getArray(user_input, entities) # User input is now an array. To look for keywords: if 'keyword' in user_input
 
         for i in range (len(user_input)):
