@@ -63,6 +63,7 @@ def findDirector(movie):
         if (len(movie['directors']) == 1):
             print('IMDBot: The director of ' + movie['title'] + ' is ' + movie['directors'][0]['name']) # outputs this if the movie has only one director
             print('What would you like to know about the director?')
+            return movie['directors'][0]
         else:
             c = 1
             for director in movie['directors']: #loops in order to ensure multiple directors are listed properly (Try asking for "The Matrix" directors)

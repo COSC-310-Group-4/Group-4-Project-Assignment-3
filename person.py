@@ -142,7 +142,7 @@ def checker(userName, person_name, oldMovie, newMovie_name):
                 print(f'IMDBot: Before I can check if {pName} was in {newMovie_name}, I need to confirm the movie.')
                 while True:
                     print(f'IMDBot: We were talking about {oldMovie_name}. Want me to search for {newMovie_name}?')
-                    searchCheck = input(f'userName: ')
+                    searchCheck = input(userName+': ')
                     sCheckFirst = searchCheck[:1].lower() # Save first letter (might only need y or n)
                     sCheckArr = sy.getArray(searchCheck, []) # Turn user input into array for synonym checking
                     if (sCheckFirst == 'y' or sy.findSyns(sCheckArr, 'yes') == 0): # If the user does want to search for the new movie name

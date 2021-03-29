@@ -47,6 +47,8 @@ We need to also download the corpus necessary for our NLP and program to run. To
 > ">>> import nltk"
 > ">>> nltk.download()"
 > A new window will open. Under the menu "CORPORA", scroll to find "wordnet", and finally press "download"
+> ">>> nltk.download('punkt')"
+> ">>> nltk.download('averaged_perceptron_tagger')"
 
 2. Make sure the code will be running on the file directory. To make sure you have it running on the directory, do the following:
 

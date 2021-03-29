@@ -6,9 +6,10 @@ import user as u
 import ner
 import spellinghandler as sp
 import synonyms as sy
+import postagging as pt
 from chatterbot import ChatBot
 
-#bot = ChatBot('MovieBot')
+bot = ChatBot('MovieBot')
 print('IMDBot: Hello There! My name is IMDBot. ', end='')
 userName = u.askForName() #set username for the first time
 print(f'IMDBOT: I just want to make sure I have your name right.')
@@ -17,16 +18,16 @@ print(f'I am a bot who knows all about movies. How can I help you today?') #conc
 
 while True:
     try:
-        user_input = input(f'{userName}: ') #collect user input for this iteration.
-        entities = ner.listEntities(user_input)
-        movie_name = ner.getMovieName(user_input)
-        person_name = ner.getPersonName(user_input)
-        company_name = ner.getOrgName(user_input)
-        user_input = sp.fixSentence(user_input, entities)
+        raw_user_input = input(f'{userName}: ') #collect user input for this iteration.
+        entities = ner.listEntities(raw_user_input)
+        movie_name = ner.getMovieName(raw_user_input)
+        person_name = ner.getPersonName(raw_user_input)
+        company_name = ner.getOrgName(raw_user_input)
+        user_input = sp.fixSentence(raw_user_input, entities)
         user_input = sy.getArray(user_input, entities) # User input is now an array. To look for keywords: if 'keyword' in user_input
-        
-        for word in user_input: # Turn all words into lowercase for easier search for keywords.
-            word.lower()
+
+        for i in range (len(user_input)):
+            user_input[i] = user_input[i].lower()
         
         if ('bye' in user_input or sy.findSyns(user_input, 'goodbye') == 0): #end conversation if user says bye
             break
@@ -49,25 +50,25 @@ while True:
             else:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about to list the characters. Try to ask me to find a movie first!')
         
-        elif ('who' and ('played' or 'voiced') in user_input):
+        elif (('who' in user_input) and ('played' in user_input) or ('voiced' in user_input)):
             if 'movie' in locals():
                 person = f.whoPlayed(userName, movie, person_name, movie_name)
             else:
                 person = f.whoPlayed(userName, '', person_name, movie_name)
         
-        elif (sy.findSyns(user_input, 'change') == 0 and ('name' or 'username') in user_input):
+        elif (sy.findSyns(user_input, 'change') == 0 and ('name' in user_input or 'username' in user_input)):
             userName = u.checkName(userName)
             print('How can I help you?') #concatenates to "IMDBot: That's a cool name, userName! "
         
-        elif('what' and ('other' or 'another') in user_input) :
+        elif('what' in user_input and ('other' in user_input or 'another' in user_input)) :
             #takes in user input and calls otherRoles() from person.py
-            if 'movie' in locals():
+            if 'person' in locals():
                 print("IMDBot: Hmm... let me think...")
                 p.otherRoles(person) # Takes person object
             else:
                 print("IMDBot: Sorry I am not sure how to help with that.")
         
-        elif('birthday' in user_input or sy.findSyns(user_input, 'birthday') == 0 or sy.findSyns(user_input, 'born') == 0):
+        elif(sy.findSyns(user_input, 'birthday') == 0 or ('when' in user_input and sy.findSyns(user_input, 'born') == 0)):
             #Call giveBio() from person.py
             #Search for birthday/birthdate
             print("IMDBot: Hmm... let me think...")
@@ -79,7 +80,7 @@ while True:
                 print("IMDBot: I\'m not sure who you\'re asking about.")
             print("IMDBot: What else would you like to know?")
         
-        elif(('birth' and 'place') in user_input):
+        elif(('where' in user_input or 'place' in user_input) and ('born' in user_input or 'birth' in user_input)):
             #Search for birth place of an actor
             print("IMDBot: Hmm... let me think...")
             if 'person' in locals():
@@ -112,7 +113,7 @@ while True:
                 print("IMDBot: I\'m not sure who you\'re asking about.")
             print("IMDBot: What else would you like to know?")
         
-        elif('check' and 'if' and 'in' in user_input and (person_name != '') and (movie_name != '')):
+        elif((('check' and 'if' and 'in') in user_input) and (person_name != '') and (movie_name != '')):
             #Check if a {actor} is in {movie}
             if 'movie' in locals():
                 p.checker(userName, person_name, movie, movie_name)
@@ -120,7 +121,7 @@ while True:
                 p.checker(userName, person_name, '', movie_name)
             print('IMDBot: What else can I help you with?')
         
-        elif ('production' and 'company' in user_input or sy.findSyns(user_input, 'companies') == 0):
+        elif (('production' and 'company') in user_input or sy.findSyns(user_input, 'companies') == 0):
             print("IMDBot: Okay, let me search the production companies for you!") # buffer for searching companies
             company = c.findCompany(movie) # list the production companies of the movie asked
             print('IMDBot: What else would you like to know about the company? :)')
@@ -130,13 +131,13 @@ while True:
             c.isProduction(company_name, otherMovie)
             print("IMDBot: What else would you like to know?")
             
-        elif (('how' and 'long') or 'runtime' in user_input or sy.findSyns(user_input, 'length') == 0): # Moved to the bottom because it can get called by accident if near top
+        elif ((('how' and 'long') in user_input) or ('runtime' in user_input or sy.findSyns(user_input, 'length') == 0)): # Moved to the bottom because it can get called by accident if near top
             if 'movie' in locals():
                 movie = f.runtime(movie)
             else:
                 print('IMDBot: Sorry, I need to know which movie you want me to check the runtime for. Please ask me to find a movie first.')
         
-        elif(('worked' and 'on') or ('role' and 'in') or ('acted' and 'in') in user_input): # Moved to bottom because it can get called by accident if at the top
+        elif(('worked' in user_input and 'on' in user_input) or ('role' in user_input and 'in' in user_input) or ('acted' in user_input and 'in' in user_input)): # Moved to bottom because it can get called by accident if at the top
             #takes in user input and calls isMember() from person.py
             if 'movie' in locals():
                 print("IMDBot: Hmm... let me check...")
@@ -144,15 +145,16 @@ while True:
             else:
                 print("IMDBot: Sorry, I could not find anything about that.")
                 
-        elif ('summary' or 'plot' in user_input):
+        elif (('summary' in user_input) or ('plot' in user_input)):
             if 'movie' in locals():
                 movie = f.giveSummary(movie)
             else:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about. Try to ask me to find a movie :)')
 
         else:
-            #bot.get_response(user_input)
-            print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
+            #print("ELSE")
+            bot.get_response(raw_user_input)
+            #print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
 
     except(KeyboardInterrupt, EOFError, SystemExit) as e: #end conversation in case of fatal error or user inputs ctrl+c
         break
