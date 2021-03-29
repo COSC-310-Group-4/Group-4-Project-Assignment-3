@@ -9,7 +9,12 @@ COSC 310 Assignment **3** - Group 4
 * [Language and Modules](#language-and-modules)
 * [Setup](#setup)
 * [Classes](#classes)
-* [TODO](#todo)
+  - [Main Class](#main-class)
+  - [Commands and IMDbPy integration](#commands-and-imdbpy-integration)
+  - [Natural Language Processing](#natural-language-processing)
+  - [Testing](#testing)
+  - [GUI](#gui)
+* [Possible Improvements](#possible-improvements)
 
 
 ## General Information
@@ -40,6 +45,8 @@ For this project, we created a responsive and interactive chatbot using Python w
 > $ pip install pyspellchecker
 
 > $ pip install nltk
+
+> $ pip install chatterbot
 
 We need to also download the corpus necessary for our NLP and program to run. To do this:
 > Make sure to "$ pip install nltk" beforehand
@@ -78,24 +85,24 @@ To see the class structure of the IMDb integration, take a look at the [UML Diag
  - This is the main file you run for the bot, it contains the command words and calls the functions that they reference.
  - This class inherits the other four.
  - A limitation of this class for now is that many of the commands are hard coded so errors in spelling or incorrect inputs will not be understood.
- - The class does ensure that any major exceptions are handled gracefully, and quick ctrl+c shutdown has also been implemented
+ - The class does ensure that any major exceptions are handled gracefully, and quick ctrl+c shutdown has also been implemented.
 
 ### Commands and IMDbPy integration
 
 #### user.py
 
-- This class gets the name of the current user for use in the interface
-- It also allows the user to change their name if requested
+- This class gets the name of the current user for use in the interface.
+- It also allows the user to change their name if requested.
 
 #### film.py
 
-- This class handles information about a certain movie and also creates a movie object with all of it's attributes being information about the selected movie
-- This class can find the director of a movie, the characters, whether someone  worked in a movie, and a summary of it
+- This class handles information about a certain movie and also creates a movie object with all of it's attributes being information about the selected movie.
+- This class can find the director of a movie, the characters, whether someone  worked in a movie, and a summary of it.
 
 #### person.py
 
-- This class handles commands related to people in the movie industry, this includes, actors, directors and other crewmembers
-- this class can be used to find the projects a person has worked on as well as general biographical information on them
+- This class handles commands related to people in the movie industry, this includes, actors, directors and other crewmembers.
+- this class can be used to find the projects a person has worked on as well as general biographical information on them.
 - it can also check if an individual has worked in a specific movie.
 
 #### company.py
@@ -105,8 +112,42 @@ To see the class structure of the IMDb integration, take a look at the [UML Diag
 
 ### Natural Language Processing
 
+#### ner.py
 
-## TODO
+- This class handles named entity recognition, it breaks down user input in a way that allows the chatbot to discern whether a user is asking about a certain movie, person, or company within a sentence.
 
-In future iterations, natural language processing will be implemented, as well as a GUI, and custom API implementations.
-This may require a full refactor of the project, so it is very much a WIP.
+#### synonyms.py
+
+- This class handles synonym recognition, which allows the bot to understand what a user input means even if certain words haven't been hardcoded.
+- It is based off of the wordnet training corpus for accuracy.
+
+#### spellinghandler.py
+
+- Ensures that any misspelt words are properly corrected in the user input before any other class processes it.
+- It fixes any spelling mistakes to prevent runtime errors in later processing.
+
+#### postagging.py
+
+- Facilitates the breaking down of a sentence into its basic parts, it can tag nouns, verbs, etc.
+- This makes the bot more able to understand the subject and reason for a user input, making commands easier to communicate.
+
+#### Trainers/Utility
+
+
+
+### Testing
+
+
+
+### GUI
+
+#### gui.py
+
+- Builds and runs a GUI container for chatbot interaction
+- This GUI is more of a proof of concept, as time constraints prevented implementation to the main runtime.
+- It can be run to see what it would look like, but chatbot interaction is nonfunctional
+
+
+## Possible Improvements
+
+
