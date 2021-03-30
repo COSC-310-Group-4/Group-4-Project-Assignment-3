@@ -28,6 +28,7 @@ For this project, we created a responsive and interactive chatbot using Python w
 - nltk 3.4.4
 - spaCy 3.0.5 **with** Pipelines en_core_web_sm 3.0.0
 - pyspellchecker 0.6.1 
+- chatterbot 1.0.2
 
 
 ## Setup
@@ -47,6 +48,8 @@ For this project, we created a responsive and interactive chatbot using Python w
 > $ pip install nltk
 
 > $ pip install chatterbot
+
+> $ pip install chatterbot-corpus (Optional; See chatterTrainer.py under [Trainers/Utility](#trainers/utility))
 
 We need to also download the corpus necessary for our NLP and program to run. To do this:
 > Make sure to "$ pip install nltk" beforehand
@@ -109,7 +112,6 @@ To see the class structure of the IMDb integration, take a look at the [UML Diag
 
 - This class finds production companies and whether they worked on specific movies, and can look for a certain movie in the company's repertoire.
 
-
 ### Natural Language Processing
 
 #### ner.py
@@ -133,11 +135,18 @@ To see the class structure of the IMDb integration, take a look at the [UML Diag
 
 #### Trainers/Utility
 
+- nerTrainer.py and nerTrainerHelp.py -- These two classes work in tandem
+  - nerTrainer has a vast collection of custom training cases as a corpus for the named entity recognition object to use.
+  - nerTrainerHelp makes the Strings easier to process for training.
 
+- chatterTrainer.py trains the chatterbot object used for generating procedural responses, it only needs to be run once to train, but can be run again if training   cases are added. The neural network training is stored in db.sqlite3 so that training doesn't have to occur at runtime. (To retrain and run chatterTrainer.py, you   must install chatterbot-corpus).
+   
 
 ### Testing
 
-
+#### test_IMDBot.py
+- Runs all the unittest functions to ensure proper code functionality.
+- Gives the bot example inputs to test if it can understand commands as natural language.
 
 ### GUI
 
@@ -150,4 +159,7 @@ To see the class structure of the IMDb integration, take a look at the [UML Diag
 
 ## Possible Improvements
 
-
+- GUI implementation
+- Larger corpora for the trainers
+- Additional API integrations
+- POS Tagging improvements regarding interfunctionality
